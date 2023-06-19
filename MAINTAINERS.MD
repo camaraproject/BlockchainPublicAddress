@@ -1,3 +1,4 @@
 | Org                    | Name                                                |
 | -----------------------| ----------------------------------------------------|
-| §company§ | $name§ |
+| Telefonica | Pedro Diez Garcia |
+| Telefonica | Jose Antonio Ordonez Lucena |
