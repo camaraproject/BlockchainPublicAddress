@@ -1,9 +1,9 @@
-<a href="https://github.com/camaraproject/§repo_name§/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/camaraproject/§repo_name§?style=plastic"></a>
-<a href="https://github.com/camaraproject/§repo_name§/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/camaraproject/§repo_name§?style=plastic"></a>
-<a href="https://github.com/camaraproject/§repo_name§/pulls" title="Open Pull Requests"><img src="https://img.shields.io/github/issues-pr/camaraproject/§repo_name§?style=plastic"></a>
-<a href="https://github.com/camaraproject/§repo_name§/graphs/contributors" title="Contributors"><img src="https://img.shields.io/github/contributors/camaraproject/§repo_name§?style=plastic"></a>
-<a href="https://github.com/camaraproject/§repo_name§" title="Repo Size"><img src="https://img.shields.io/github/repo-size/camaraproject/§repo_name§?style=plastic"></a>
-<a href="https://github.com/camaraproject/§repo_name§/blob/main/LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddresscommits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/camaraproject/BlockchainPublicAddress?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddress/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/camaraproject/BlockchainPublicAddress?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddress/pulls" title="Open Pull Requests"><img src="https://img.shields.io/github/issues-pr/camaraproject/BlockchainPublicAddress?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddress/graphs/contributors" title="Contributors"><img src="https://img.shields.io/github/contributors/camaraproject/BlockchainPublicAddress?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddress" title="Repo Size"><img src="https://img.shields.io/github/repo-size/camaraproject/BlockchainPublicAddress?style=plastic"></a>
+<a href="https://github.com/camaraproject/BlockchainPublicAddress/blob/main/LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=plastic"></a>
 
 # Blockchain Public Address
 Repository to describe, develop, document and test the Blockchain Public Address API family
