@@ -84,11 +84,13 @@ paths:
                     - id: 90c626ce-5284-4a84-b85e-46e0ee3d0434
                       blockchain_public_address: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
                       blockchain: ethereum
-                      currency: ETH
+                      currency:
+                        - ETH
                     - id: 5c179f50-db37-4d23-87e3-6f10c991899f
                       blockchain_public_address: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
                       blockchain: polygon
-                      currency: WETH
+                      currency:
+                        - WETH
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -97,6 +99,8 @@ paths:
           $ref: "#/components/responses/Generic403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
         "500":
           $ref: "#/components/responses/Generic500"
         "503":
@@ -143,6 +147,8 @@ paths:
           $ref: "#/components/responses/Generic403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
         "500":
           $ref: "#/components/responses/Generic500"
         "503":
@@ -178,6 +184,8 @@ paths:
           $ref: "#/components/responses/Generic403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
         "500":
           $ref: "#/components/responses/Generic500"
         "503":
@@ -219,7 +227,6 @@ components:
         - phoneNumber
         - blockchainPublicAddress
         - blockchain
-        - currency
       properties:
         phoneNumber:
           type: string
@@ -236,13 +243,17 @@ components:
             - bitcoin
             - celo
         currency:
-          type: string
-          description: Currency used in the `blockchainPublicAddress`. Must be one matching a supported wrapped token for the indicated blockchain.
+          type: array
+          description: Set of currencies supported in the blockchain. Only indicated to setup restrictions on currencies supported.
+          minItems: 0
+          items: 
+            type: string
       example:
         phoneNumber: "+346789990012"
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
         blockchain: ethereum
-        currency: ETH
+        currency:
+          - ETH
     BindBlockchainPublicAddressResponse:
       type: object
       description: Bind Blockchain Public Address response
@@ -259,7 +270,6 @@ components:
         - id
         - blockchainPublicAddress
         - blockchain
-        - currency
       properties:
         id:
           type: string
@@ -273,8 +283,11 @@ components:
             Name/type of the blockchain. Notice a limited list is supported. So far ethereum, polygon, bitcoin and celo.             
             List may be extended so this field is not set as enum, due to API client should be ready to process any value when returned.
         currency:
-          type: string
-          description: Currency used in the `blockchainPublicAddress`.
+          type: array
+          description: Set of currencies supported in the blockchain. Only indicated when there are restrictions on currencies supported.
+          minItems: 0
+          items: 
+            type: string
     ErrorInfo:
       type: object
       properties:
@@ -295,8 +308,9 @@ components:
     InvalidCurrencyForBlockchain400:
       description: |
         Problem with the client request.
-        In addition to regular scenario of INVALID_ARGUMENT, another exception may exist.
+        In addition to regular scenario of INVALID_ARGUMENT, other exceptions may exist.
          - Indicated Currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
+         - Currency indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED","message": "One currency is required")
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -365,6 +379,19 @@ components:
             status: 404
             code: NOT_FOUND
             message: The specified resource is not found
+    Generic429:
+      description: Too Many Requests
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 429
+            code: TOO_MANY_REQUESTS
+            message: Either out of resource quota or reaching rate limiting
     Generic500:
       description: Server error
       headers:
