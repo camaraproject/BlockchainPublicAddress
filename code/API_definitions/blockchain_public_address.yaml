@@ -15,9 +15,6 @@ info:
      Notice that the phone_number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the phone_number, and forward the request using a 2-legged approach to contact the other Telco Operator. Flow below shows the described options.
      - **Endpoint to associate a phone_number with a Blockchain Public Address**. It does not matter if the phone_number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated phone_number must belong to the sub in the Access Token; this is because only the user of the phone_number must be able to perform a bind. As a consequence, this operation will only work with phone_numbers of the Telco Operator exposing the API.
      - **Endpoint to remove the association of a phone_number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the phone_number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a phone_number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a phone_number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with phone_numbers of the Telco Operator exposing the API.
-    ## Example GET flow
-
-    ![BLockChain Get Flow](../BlockchainPublicAddress/documentation/API_documentation/resources/Retrieve_BlockChain_Public_Address.png)
 
     # Further Info and Support
 
