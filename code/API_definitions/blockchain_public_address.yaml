@@ -1,0 +1,441 @@
+openapi: 3.0.3
+info:
+  title: Blockchain Public Address
+  description: |-
+    Allows to manage Blockchain Public Address associated to a phone_number.
+    # Relevant Definitions and concepts
+    - **NaaS**: *Network-as-a-Service* model where Telco Operator Network resources are exposed to third parties through APIs. In this particular API, Blockchain Public Address is managed following this model.
+    - **Blockchain Public Address**: Unique string of code used by individuals to receive or request payments in cryptocurrency.
+    # API Functionality
+    This API allows to manage a Blockchain Public Address associated to a phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
+
+    # Resources and Operations overview
+    This API provides three endpoints:
+     - **Endpoint to retrieve the Blockchain Public Address(es) associated to a phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any phone number, in order to perform a transaction with one of the available ones (send or request).
+     Notice that the phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the phone number, and forward the request using a 2-legged approach to contact the other Telco Operator. Flow below shows the described options.
+     - **Endpoint to associate a phone number with a Blockchain Public Address**. It does not matter if the phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated phone number must belong to the sub in the Access Token; this is because only the user of the phone number must be able to perform a bind. As a consequence, this operation will only work with phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to remove the association of a phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with phone numbers of the Telco Operator exposing the API.
+
+    # Further Info and Support
+
+    (FAQs will be added in a later version of the documentation)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: project-email@sample.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+externalDocs:
+  description: Product documentation at Camara
+  url: https://github.com/camaraproject/
+servers:
+  - url: "{apiRoot}/{basePath}"
+    variables:
+      apiRoot:
+        default: http://localhost:9091
+        description: API root
+      basePath:
+        default: blockchain-public-address/v0
+        description: Base path for the Blockchain Public Address API
+security:
+  - three_legged:
+    - blockchain-public-address-read
+    - blockchain-public-address-create
+    - blockchain-public-address-delete
+tags:
+  - name: Blockchain Public Address
+    description: API operations manage Blockchain Public Address
+paths:
+  /blockchain-public-addresses:
+    get:
+      tags:
+        - Blockchain Public Address
+      summary: Retrieves Blockchain Public Address associated to a phone number.
+      description:
+        Retrieves Blockchain Public Address associated to a phone number. This operation can be accessed in 3-legged and in 2-legged, notice that the phone number used as input need not be related with the user or phone number to which the Access
+        Token is associated; this is because the operation is intended to be used to manage Blockchain Public Address of any phone number, in order to perform send or request crypto operations.
+      operationId: retrieveBlockchainPublicAddress
+      security:
+        - three_legged:
+          - blockchain-public-address-read
+      parameters:
+        - $ref: "#/components/parameters/PhoneNumber"
+        - $ref: "#/components/parameters/x-correlator"
+      responses:
+        "200":
+          description: OK
+          headers:
+            x-correlator:
+              $ref: "#/components/headers/x-correlator"
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Array of Blockchain Public Addresses bound to the phone number
+                items:
+                  $ref: "#/components/schemas/BlockchainPublicAddressResponse"
+              examples:
+                RetrieveBlockchainPublicAddressResponse200Example:
+                  value:
+                    - id: 90c626ce-5284-4a84-b85e-46e0ee3d0434
+                      blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
+                      blockchain: ethereum
+                      currency:
+                        - ETH
+                    - id: 5c179f50-db37-4d23-87e3-6f10c991899f
+                      blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
+                      blockchain: polygon
+                      currency:
+                        - WETH
+        "400":
+          $ref: "#/components/responses/Generic400"
+        "401":
+          $ref: "#/components/responses/Generic401"
+        "403":
+          $ref: "#/components/responses/Generic403"
+        "404":
+          $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
+        "500":
+          $ref: "#/components/responses/Generic500"
+        "503":
+          $ref: "#/components/responses/Generic503"
+        "504":
+          $ref: "#/components/responses/Generic504"
+    post:
+      tags:
+        - Blockchain Public Address
+      summary: Binds Blockchain Public Address to a phone number
+      description:
+        Binds Blockchain Public Address to a phone number. If the phone number is already bound to a Blockchain Public Address, this operation will add a new bound Blockchain Public Address to the phone number. This operation is intended to be used
+        with a 3-legged Access Token, and the indicated phone number must belong to the sub in the Access Token; this is because only the user of the phone number must be able to perform the bind.
+      operationId: bindBlockchainPublicAddress
+      security:
+        - three_legged:
+          - blockchain-public-address-create
+      parameters:
+        - $ref: "#/components/parameters/x-correlator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BindBlockchainPublicAddressRequest"
+      responses:
+        "201":
+          description: Created
+          headers:
+            x-correlator:
+              $ref: "#/components/headers/x-correlator"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BindBlockchainPublicAddressResponse"
+              examples:
+                BindBlockchainPublicAddressResponse201Example:
+                  value:
+                    id: 90c626ce-5284-4a84-b85e-46e0ee3d0434
+        "400":
+          $ref: "#/components/responses/InvalidCurrencyForBlockchain400"
+        "401":
+          $ref: "#/components/responses/Generic401"
+        "403":
+          $ref: "#/components/responses/Generic403"
+        "404":
+          $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
+        "500":
+          $ref: "#/components/responses/Generic500"
+        "503":
+          $ref: "#/components/responses/Generic503"
+        "504":
+          $ref: "#/components/responses/Generic504"
+  /blockchain-public-addresses/{id}:
+    delete:
+      tags:
+        - Blockchain Public Address
+      summary: Unbinds Blockchain Public Address association to a phone number
+      description: |-
+        Unbinds Blockchain Public Address to a phone number. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the phone number must be able to perform the unbind.
+        Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint.
+      operationId: deleteBlockchainPublicAddress
+      security:
+        - three_legged:
+          - blockchain-public-address-delete
+      parameters:
+        - $ref: "#/components/parameters/Id"
+        - $ref: "#/components/parameters/x-correlator"
+      responses:
+        "204":
+          description: No Content
+          headers:
+            x-correlator:
+              $ref: "#/components/headers/x-correlator"
+        "400":
+          $ref: "#/components/responses/Generic400"
+        "401":
+          $ref: "#/components/responses/Generic401"
+        "403":
+          $ref: "#/components/responses/Generic403"
+        "404":
+          $ref: "#/components/responses/Generic404"
+        "429":
+          $ref: "#/components/responses/Generic429"
+        "500":
+          $ref: "#/components/responses/Generic500"
+        "503":
+          $ref: "#/components/responses/Generic503"
+        "504":
+          $ref: "#/components/responses/Generic504"
+components:
+  headers:
+    x-correlator:
+      description: Correlation id for the different services
+      schema:
+        type: string
+  parameters:
+    x-correlator:
+      name: x-correlator
+      in: header
+      description: Correlation id for the different services
+      schema:
+        type: string
+    Id:
+      name: id
+      in: path
+      description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+      required: true
+      schema:
+        type: string
+    PhoneNumber:
+      name: phoneNumber
+      in: query
+      description: A phone number belonging to the user. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
+      required: true
+      schema:
+        type: string
+  schemas:
+    BindBlockchainPublicAddressRequest:
+      type: object
+      description: Payload to request the Bind of the Blockchain Public Adddress
+      required:
+        - phoneNumber
+        - blockchainPublicAddress
+        - blockchain
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone Number to which the Blockchain Public Address will be bound. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
+        blockchainPublicAddress:
+          type: string
+          description: User's Blockchain Public Address to bind to the phoneNumber
+        blockchain:
+          type: string
+          description: Name/Type of the blockchain whose address value is provided within `blockchainPublicAddress`. So far ethereum, polygon, bitcoin and celo are supported. List may be extended.
+          enum:
+            - ethereum
+            - polygon
+            - bitcoin
+            - celo
+        currency:
+          type: array
+          description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
+          minItems: 0
+          items: 
+            type: string
+      example:
+        phoneNumber: "+346789990012"
+        blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
+        blockchain: ethereum
+        currency:
+          - ETH
+    BindBlockchainPublicAddressResponse:
+      type: object
+      description: Bind Blockchain Public Address response
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+    BlockchainPublicAddressResponse:
+      type: object
+      description: Blockchain Public Address response
+      required:
+        - id
+        - blockchainPublicAddress
+        - blockchain
+      properties:
+        id:
+          type: string
+          description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+        blockchainPublicAddress:
+          type: string
+          description: User's Blockchain Public Address
+        blockchain:
+          type: string
+          description: | 
+            Name/type of the blockchain. Notice a limited list is supported. So far ethereum, polygon, bitcoin and celo.             
+            List may be extended so this field is not set as enum, due to API client should be ready to process any value when returned.
+        currency:
+          type: array
+          description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
+          minItems: 0
+          items: 
+            type: string
+    ErrorInfo:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code returned along with this error response
+        code:
+          type: string
+          description: Code given to this error
+        message:
+          type: string
+          description: Detailed error description
+      required:
+        - status
+        - code
+        - message
+  responses:
+    InvalidCurrencyForBlockchain400:
+      description: |
+        Problem with the client request.
+        In addition to regular scenario of INVALID_ARGUMENT, other exceptions may exist.
+         - Indicated Currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
+         - Currency indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED","message": "One currency is required")
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          examples:
+            InvalidArgument:
+              value:
+                code: INVALID_ARGUMENT
+                message: Client specified an invalid argument, request body or query param
+            InvalidCurrencyForBlockchain:
+              value:
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
+                message: Indicated currency is not found
+    Generic400:
+      description: Problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 400
+            code: INVALID_ARGUMENT
+            message: Client specified an invalid argument, request body or query param
+    Generic401:
+      description: Authentication problem with the client request
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 401
+            code: UNAUTHENTICATED
+            message: Request not authenticated due to missing, invalid, or expired credentials
+    Generic403:
+      description: Forbidden
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 403
+            code: PERMISSION_DENIED
+            message: "Operation not allowed: ..."
+    Generic404:
+      description: Not found
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 404
+            code: NOT_FOUND
+            message: The specified resource is not found
+    Generic429:
+      description: Too Many Requests
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 429
+            code: TOO_MANY_REQUESTS
+            message: Either out of resource quota or reaching rate limiting
+    Generic500:
+      description: Server error
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 500
+            code: INTERNAL
+            message: Server error
+    Generic503:
+      description: Service unavailable
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 503
+            code: UNAVAILABLE
+            message: Service unavailable
+    Generic504:
+      description: Request time exceeded. If it happens repeatedly, consider reducing the request complexity
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 504
+            code: TIMEOUT
+            message: Request timeout exceeded
+  securitySchemes:
+    three_legged:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.example.com/authorize
+          tokenUrl: https://auth.example.com/token
+          scopes:
+            blockchain-public-address-read: perform blockchain public address fetch operations
+            blockchain-public-address-create: bind a blockchain public address to a phoneNumber
+            blockchain-public-address-delete: unbind a blockchain public address from a phoneNumber
