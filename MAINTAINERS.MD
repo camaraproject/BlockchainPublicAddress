@@ -4,4 +4,3 @@
 | Telefonica             | Jose Antonio Ordonez Lucena                         |
 | Deutsche Telekom       | Georgios Papadopoulos                               |
 | Vodafone               | Sebastian Köller                                    |
-| Vodafone               | Klaus Reifenrath                                    |
