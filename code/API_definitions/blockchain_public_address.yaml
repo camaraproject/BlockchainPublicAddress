@@ -2,19 +2,21 @@ openapi: 3.0.3
 info:
   title: Blockchain Public Address
   description: |-
-    Allows to manage Blockchain Public Address associated to a phone_number.
+    Allows to manage Blockchain Public Address associated to a mobile phone number.
+
     # Relevant Definitions and concepts
     - **NaaS**: *Network-as-a-Service* model where Telco Operator Network resources are exposed to third parties through APIs. In this particular API, Blockchain Public Address is managed following this model.
     - **Blockchain Public Address**: Unique string of code used by individuals to receive or request payments in cryptocurrency.
+    
     # API Functionality
-    This API allows to manage a Blockchain Public Address associated to a phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
+    This API allows to manage a Blockchain Public Address associated to a mobile phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
 
     # Resources and Operations overview
     This API provides three endpoints:
-     - **Endpoint to retrieve the Blockchain Public Address(es) associated to a phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any phone number, in order to perform a transaction with one of the available ones (send or request).
-     Notice that the phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the phone number, and forward the request using a 2-legged approach to contact the other Telco Operator. Flow below shows the described options.
-     - **Endpoint to associate a phone number with a Blockchain Public Address**. It does not matter if the phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated phone number must belong to the sub in the Access Token; this is because only the user of the phone number must be able to perform a bind. As a consequence, this operation will only work with phone numbers of the Telco Operator exposing the API.
-     - **Endpoint to remove the association of a phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to retrieve the Blockchain Public Address(es) associated to a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
+     Notice that the mobile phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the mobile phone number, and forward the request using a 2-legged approach to contact the other Telco Operator.
+     - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the sub in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a mobile phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
 
     # Further Info and Support
 
@@ -25,7 +27,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.1.0
+  version: 0.2.0-wip
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/
@@ -38,27 +40,22 @@ servers:
       basePath:
         default: blockchain-public-address/v0
         description: Base path for the Blockchain Public Address API
-security:
-  - three_legged:
-    - blockchain-public-address-read
-    - blockchain-public-address-create
-    - blockchain-public-address-delete
 tags:
   - name: Blockchain Public Address
-    description: API operations manage Blockchain Public Address
+    description: API operations to manage Blockchain Public Addresses
 paths:
   /blockchain-public-addresses:
     get:
       tags:
         - Blockchain Public Address
-      summary: Retrieves Blockchain Public Address associated to a phone number.
+      summary: Retrieves Blockchain Public Address associated to a mobile phone number.
       description:
-        Retrieves Blockchain Public Address associated to a phone number. This operation can be accessed in 3-legged and in 2-legged, notice that the phone number used as input need not be related with the user or phone number to which the Access
-        Token is associated; this is because the operation is intended to be used to manage Blockchain Public Address of any phone number, in order to perform send or request crypto operations.
+        Retrieves Blockchain Public Address associated to a mobile phone number. This operation can be accessed in 3-legged and in 2-legged, notice that the mobile phone number used as input need not be related with the user or mobile phone number to which the Access
+        Token is associated; this is because the operation is intended to be used to manage Blockchain Public Address of any mobile phone number, in order to perform send or request crypto operations.
       operationId: retrieveBlockchainPublicAddress
       security:
-        - three_legged:
-          - blockchain-public-address-read
+        - openId:
+            - blockchain-public-address:read
       parameters:
         - $ref: "#/components/parameters/PhoneNumber"
         - $ref: "#/components/parameters/x-correlator"
@@ -72,18 +69,18 @@ paths:
             application/json:
               schema:
                 type: array
-                description: Array of Blockchain Public Addresses bound to the phone number
+                description: Array of Blockchain Public Addresses bound to the mobile phone number
                 items:
                   $ref: "#/components/schemas/BlockchainPublicAddressResponse"
               examples:
                 RetrieveBlockchainPublicAddressResponse200Example:
                   value:
-                    - id: 90c626ce-5284-4a84-b85e-46e0ee3d0434
+                    - id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
                       blockchain: ethereum
                       currency:
                         - ETH
-                    - id: 5c179f50-db37-4d23-87e3-6f10c991899f
+                    - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
                       blockchain: polygon
                       currency:
@@ -107,14 +104,14 @@ paths:
     post:
       tags:
         - Blockchain Public Address
-      summary: Binds Blockchain Public Address to a phone number
+      summary: Binds Blockchain Public Address to a mobile phone number
       description:
-        Binds Blockchain Public Address to a phone number. If the phone number is already bound to a Blockchain Public Address, this operation will add a new bound Blockchain Public Address to the phone number. This operation is intended to be used
-        with a 3-legged Access Token, and the indicated phone number must belong to the sub in the Access Token; this is because only the user of the phone number must be able to perform the bind.
+        Binds Blockchain Public Address to a mobile phone number. If the mobile phone number is already bound to a Blockchain Public Address, this operation will add a new bound Blockchain Public Address to the mobile phone number. This operation is intended to be used
+        with a 3-legged Access Token, and the indicated mobile phone number must belong to the user identified by its `sub` in the Access Token; this is because only the user of the mobile phone number must be able to perform the bind.
       operationId: bindBlockchainPublicAddress
       security:
-        - three_legged:
-          - blockchain-public-address-create
+        - openId:
+            - blockchain-public-address:create
       parameters:
         - $ref: "#/components/parameters/x-correlator"
       requestBody:
@@ -135,7 +132,7 @@ paths:
               examples:
                 BindBlockchainPublicAddressResponse201Example:
                   value:
-                    id: 90c626ce-5284-4a84-b85e-46e0ee3d0434
+                    id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
         "400":
           $ref: "#/components/responses/InvalidCurrencyForBlockchain400"
         "401":
@@ -156,14 +153,14 @@ paths:
     delete:
       tags:
         - Blockchain Public Address
-      summary: Unbinds Blockchain Public Address association to a phone number
+      summary: Unbinds Blockchain Public Address association to a mobile phone number
       description: |-
-        Unbinds Blockchain Public Address to a phone number. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the phone number must be able to perform the unbind.
-        Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint.
+        Unbinds Blockchain Public Address to a mobile phone number. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform the unbind.
+        Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the user identified by its `sub` in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a mobile phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint.
       operationId: deleteBlockchainPublicAddress
       security:
-        - three_legged:
-          - blockchain-public-address-delete
+        - openId:
+            - blockchain-public-address:delete
       parameters:
         - $ref: "#/components/parameters/Id"
         - $ref: "#/components/parameters/x-correlator"
@@ -190,6 +187,10 @@ paths:
         "504":
           $ref: "#/components/responses/Generic504"
 components:
+  securitySchemes:
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: https://example.com/.well-known/openid-configuration
   headers:
     x-correlator:
       description: Correlation id for the different services
@@ -205,14 +206,14 @@ components:
     Id:
       name: id
       in: path
-      description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+      description: Unique identifier given to the bind relationship of a mobile `phoneNumber` with a Blockchain Public Address.
       required: true
       schema:
         type: string
     PhoneNumber:
       name: phoneNumber
       in: query
-      description: A phone number belonging to the user. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
+      description: A mobile phone number belonging to the user. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
       required: true
       schema:
         type: string
@@ -227,10 +228,10 @@ components:
       properties:
         phoneNumber:
           type: string
-          description: Phone Number to which the Blockchain Public Address will be bound. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
+          description: Mobile phone number to which the Blockchain Public Address will be bound. In order to be globally unique it has to be formatted in international format, according to E.164 standard, optionally prefixed with '+'.
         blockchainPublicAddress:
           type: string
-          description: User's Blockchain Public Address to bind to the phoneNumber
+          description: User's Blockchain Public Address to bind to the mobile `phoneNumber`
         blockchain:
           type: string
           description: Name/Type of the blockchain whose address value is provided within `blockchainPublicAddress`. So far ethereum, polygon, bitcoin and celo are supported. List may be extended.
@@ -259,7 +260,7 @@ components:
       properties:
         id:
           type: string
-          description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+          description: Unique identifier given to the bind relationship of a mobile `phoneNumber` with a Blockchain Public Address.
     BlockchainPublicAddressResponse:
       type: object
       description: Blockchain Public Address response
@@ -270,7 +271,7 @@ components:
       properties:
         id:
           type: string
-          description: Unique identifier given to the bind relationship of a phoneNumber with a Blockchain Public Address.
+          description: Unique identifier given to the bind relationship of a mobile `phoneNumber` with a Blockchain Public Address.
         blockchainPublicAddress:
           type: string
           description: User's Blockchain Public Address
@@ -428,14 +429,3 @@ components:
             status: 504
             code: TIMEOUT
             message: Request timeout exceeded
-  securitySchemes:
-    three_legged:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: https://auth.example.com/authorize
-          tokenUrl: https://auth.example.com/token
-          scopes:
-            blockchain-public-address-read: perform blockchain public address fetch operations
-            blockchain-public-address-create: bind a blockchain public address to a phoneNumber
-            blockchain-public-address-delete: unbind a blockchain public address from a phoneNumber
