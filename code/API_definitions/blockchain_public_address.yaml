@@ -55,7 +55,7 @@ paths:
       operationId: retrieveBlockchainPublicAddress
       security:
         - openId:
-            - blockchain-public-address:read
+          - blockchain-public-address:read
       parameters:
         - $ref: "#/components/parameters/PhoneNumber"
         - $ref: "#/components/parameters/x-correlator"
@@ -77,12 +77,12 @@ paths:
                   value:
                     - id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-                      blockchain: ethereum
+                      blockchain: "evm:1"
                       currency:
                         - ETH
                     - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
-                      blockchain: polygon
+                      blockchain: "evm:137"
                       currency:
                         - WETH
         "400":
@@ -111,7 +111,7 @@ paths:
       operationId: bindBlockchainPublicAddress
       security:
         - openId:
-            - blockchain-public-address:create
+          - blockchain-public-address:create
       parameters:
         - $ref: "#/components/parameters/x-correlator"
       requestBody:
@@ -160,7 +160,7 @@ paths:
       operationId: deleteBlockchainPublicAddress
       security:
         - openId:
-            - blockchain-public-address:delete
+          - blockchain-public-address:delete
       parameters:
         - $ref: "#/components/parameters/Id"
         - $ref: "#/components/parameters/x-correlator"
@@ -234,12 +234,21 @@ components:
           description: User's Blockchain Public Address to bind to the mobile `phoneNumber`
         blockchain:
           type: string
-          description: Name/Type of the blockchain whose address value is provided within `blockchainPublicAddress`. So far ethereum, polygon, bitcoin and celo are supported. List may be extended.
-          enum:
-            - ethereum
-            - polygon
-            - bitcoin
-            - celo
+          description: |-
+            Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
+            Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
+            
+            - `<L1_Ecosystem>`: Represents a Layer 1 Blockchain Ecosystem (e.g. ethereum, bitcoin,...)
+            - `<sub_id>`: Represents subsequents L2 and Testnet Blockchain Ecosystems, whenever they apply (e.g. bitcoin is a monolithic blockchain so as this concept does not apply)
+
+            So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
+            - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
+              - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
+              - `polygon` blockhain would be identified by `evm:137` value (i.e. polygon mainnet).
+              - `celo` blockchain would be identified by `evm:42220` value (i.e. polygon mainnet).
+            - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `cardano`: Representing Caradno L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
           description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
@@ -249,7 +258,7 @@ components:
       example:
         phoneNumber: "+346789990012"
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-        blockchain: ethereum
+        blockchain: "evm:1"
         currency:
           - ETH
     BindBlockchainPublicAddressResponse:
@@ -277,9 +286,21 @@ components:
           description: User's Blockchain Public Address
         blockchain:
           type: string
-          description: | 
-            Name/type of the blockchain. Notice a limited list is supported. So far ethereum, polygon, bitcoin and celo.             
-            List may be extended so this field is not set as enum, due to API client should be ready to process any value when returned.
+          description: |-
+            Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
+            Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
+            
+            - `<L1_Ecosystem>`: Represents a Layer 1 Blockchain Ecosystem (e.g. ethereum, bitcoin,...)
+            - `<sub_id>`: Represents subsequents L2 and Testnet Blockchain Ecosystems, whenever they apply (e.g. bitcoin is a monolithic blockchain so as this concept does not apply)
+
+            So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
+            - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
+              - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
+              - `polygon` blockhain would be identified by `evm:137` value (i.e. polygon mainnet).
+              - `celo` blockchain would be identified by `evm:42220` value (i.e. polygon mainnet).
+            - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `cardano`: Representing Caradno L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
           description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
