@@ -138,7 +138,7 @@ paths:
         "401":
           $ref: "#/components/responses/Generic401"
         "403":
-          $ref: "#/components/responses/Generic403"
+          $ref: "#/components/responses/PermissionDeniedForBlockchain403"
         "404":
           $ref: "#/components/responses/Generic404"
         "429":
@@ -248,7 +248,7 @@ components:
               - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `cardano`: Representing Caradno L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
           description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
@@ -300,7 +300,7 @@ components:
               - `celo` blockchain would be identified by `evm:42220` value (i.e. polygon mainnet).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `cardano`: Representing Caradno L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
           description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
@@ -346,6 +346,27 @@ components:
               value:
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
                 message: Indicated currency is not found
+    PermissionDeniedForBlockchain403:
+      description: |
+        Forbidden.
+        In addition to regular scenario of PERMISSION_DENIED, other exceptions may exist.
+         - Blockchain identifier not allowed by business rules ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_IDENTIFIER_NOT_ALLOWED","message": "Indicated blockchain identifier is not allowed by business rules")
+      headers:
+        x-correlator:
+          $ref: '#/components/headers/x-correlator'
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          examples:
+            PermissionDenied:
+              value:
+                code: PERMISSION_DENIED
+                message: "Operation not allowed: ..."
+            NotAllowedBlockchain:
+              value:
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_IDENTIFIER_NOT_ALLOWED
+                message: Indicated blockchain identifier is not allowed by business rules
     Generic400:
       description: Problem with the client request
       headers:
