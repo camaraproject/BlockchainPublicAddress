@@ -245,7 +245,7 @@ components:
             - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
               - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
               - `polygon` blockhain would be identified by `evm:137` value (i.e. polygon mainnet).
-              - `celo` blockchain would be identified by `evm:42220` value (i.e. polygon mainnet).
+              - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Caradno L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
