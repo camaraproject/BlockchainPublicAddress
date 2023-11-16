@@ -2,18 +2,18 @@ openapi: 3.0.3
 info:
   title: Blockchain Public Address
   description: |-
-    Allows to manage Blockchain Public Address associated to a mobile phone number.
+    Allows to manage Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
     - **NaaS**: *Network-as-a-Service* model where Telco Operator Network resources are exposed to third parties through APIs. In this particular API, Blockchain Public Address is managed following this model.
     - **Blockchain Public Address**: Unique string of code used by individuals to receive or request payments in cryptocurrency.
     
     # API Functionality
-    This API allows to manage a Blockchain Public Address associated to a mobile phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
+    This API allows to manage a Blockchain Public Address associated with a mobile phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
 
     # Resources and Operations overview
     This API provides three endpoints:
-     - **Endpoint to retrieve the Blockchain Public Address(es) associated to a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
+     - **Endpoint to retrieve the Blockchain Public Address(es) associated with a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
      Notice that the mobile phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the mobile phone number, and forward the request using a 2-legged approach to contact the other Telco Operator.
      - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the sub in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
      - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a mobile phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
@@ -48,9 +48,9 @@ paths:
     get:
       tags:
         - Blockchain Public Address
-      summary: Retrieves Blockchain Public Address associated to a mobile phone number.
+      summary: Retrieves Blockchain Public Address associated with a mobile phone number.
       description:
-        Retrieves Blockchain Public Address associated to a mobile phone number. This operation can be accessed in 3-legged and in 2-legged, notice that the mobile phone number used as input need not be related with the user or mobile phone number to which the Access
+        Retrieves Blockchain Public Address associated with a mobile phone number. This operation can be accessed in 3-legged and in 2-legged, notice that the mobile phone number used as input need not be related with the user or mobile phone number to which the Access
         Token is associated; this is because the operation is intended to be used to manage Blockchain Public Address of any mobile phone number, in order to perform send or request crypto operations.
       operationId: retrieveBlockchainPublicAddress
       security:
