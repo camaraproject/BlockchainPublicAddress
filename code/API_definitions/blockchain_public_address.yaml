@@ -77,12 +77,12 @@ paths:
                   value:
                     - id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-                      blockchain: "evm:1"
+                      blockchainNetworkId: "evm:1"
                       currency:
                         - ETH
                     - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
-                      blockchain: "evm:137"
+                      blockchainNetworkId: "evm:137"
                       currency:
                         - WETH
         "400":
@@ -134,7 +134,7 @@ paths:
                   value:
                     id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
         "400":
-          $ref: "#/components/responses/InvalidCurrencyForBlockchain400"
+          $ref: "#/components/responses/InvalidArgumentForBlockchain400"
         "401":
           $ref: "#/components/responses/Generic401"
         "403":
@@ -224,7 +224,7 @@ components:
       required:
         - phoneNumber
         - blockchainPublicAddress
-        - blockchain
+        - blockchainNetworkId
       properties:
         phoneNumber:
           type: string
@@ -232,8 +232,9 @@ components:
         blockchainPublicAddress:
           type: string
           description: User's Blockchain Public Address to bind to the mobile `phoneNumber`
-        blockchain:
+        blockchainNetworkId:
           type: string
+          pattern: ^[a-zA-Z0-9]+:?[a-zA-Z0-9]+$
           description: |-
             Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
             Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
@@ -258,7 +259,7 @@ components:
       example:
         phoneNumber: "+346789990012"
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-        blockchain: "evm:1"
+        blockchainNetworkId: "evm:1"
         currency:
           - ETH
     BindBlockchainPublicAddressResponse:
@@ -276,7 +277,7 @@ components:
       required:
         - id
         - blockchainPublicAddress
-        - blockchain
+        - blockchainNetworkId
       properties:
         id:
           type: string
@@ -284,7 +285,7 @@ components:
         blockchainPublicAddress:
           type: string
           description: User's Blockchain Public Address
-        blockchain:
+        blockchainNetworkId:
           type: string
           description: |-
             Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
@@ -324,11 +325,12 @@ components:
         - code
         - message
   responses:
-    InvalidCurrencyForBlockchain400:
+    InvalidArgumentForBlockchain400:
       description: |
         Problem with the client request.
         In addition to regular scenario of INVALID_ARGUMENT, other exceptions may exist.
-         - Indicated Currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
+         - Indicated blockchainNetworkId is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_ID","message": "Indicated blockchainNetworkId is not valid")
+         - Indicated currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
          - Currency indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED","message": "One currency is required")
       headers:
         x-correlator:
@@ -350,7 +352,7 @@ components:
       description: |
         Forbidden.
         In addition to regular scenario of PERMISSION_DENIED, other exceptions may exist.
-         - Blockchain identifier not allowed by business rules ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_IDENTIFIER_NOT_ALLOWED","message": "Indicated blockchain identifier is not allowed by business rules")
+         - Blockchain identifier not allowed by business rules ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_NETWORK_IDENTIFIER_NOT_ALLOWED","message": "Indicated blockchainNetworkId is not allowed by business rules")
       headers:
         x-correlator:
           $ref: '#/components/headers/x-correlator'
@@ -363,10 +365,10 @@ components:
               value:
                 code: PERMISSION_DENIED
                 message: "Operation not allowed: ..."
-            NotAllowedBlockchain:
+            NotAllowedBlockchainNetworkId:
               value:
-                code: BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_IDENTIFIER_NOT_ALLOWED
-                message: Indicated blockchain identifier is not allowed by business rules
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_NETWORK_IDENTIFIER_NOT_ALLOWED
+                message: Indicated blockchainNetworkId is not allowed by business rules
     Generic400:
       description: Problem with the client request
       headers:
