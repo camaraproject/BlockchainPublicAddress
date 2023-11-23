@@ -329,7 +329,7 @@ components:
       description: |
         Problem with the client request.
         In addition to regular scenario of INVALID_ARGUMENT, other exceptions may exist.
-         - Indicated blockchainNetworkId is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_ID","message": "Indicated blockchainNetworkId is not valid")
+         - Indicated blockchainNetworkId is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER","message": "Indicated blockchainNetworkId is not valid")
          - Indicated currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
          - Currency indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED","message": "One currency is required")
       headers:
@@ -344,10 +344,18 @@ components:
               value:
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param
+            InvalidBlockchainNetworkId:
+              value:
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
+                message: Indicated blockchainNetworkId is not valid
             InvalidCurrencyForBlockchain:
               value:
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
                 message: Indicated currency is not found
+            RequiredCurrencyforBlockchain:
+              value:
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
+                message: One currency is required
     PermissionDeniedForBlockchain403:
       description: |
         Forbidden.
