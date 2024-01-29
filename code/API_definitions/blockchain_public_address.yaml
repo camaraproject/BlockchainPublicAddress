@@ -342,18 +342,22 @@ components:
           examples:
             InvalidArgument:
               value:
+                status: 400
                 code: INVALID_ARGUMENT
                 message: Client specified an invalid argument, request body or query param
             InvalidBlockchainNetworkId:
               value:
+                status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
                 message: Indicated blockchainNetworkId is not valid
             InvalidCurrencyForBlockchain:
               value:
+                status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
                 message: Indicated currency is not found
             RequiredCurrencyforBlockchain:
               value:
+                status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
                 message: One currency is required
     PermissionDeniedForBlockchain403:
@@ -371,10 +375,12 @@ components:
           examples:
             PermissionDenied:
               value:
+                status: 403
                 code: PERMISSION_DENIED
                 message: "Operation not allowed: ..."
             NotAllowedBlockchainNetworkId:
               value:
+                status: 403
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_NETWORK_IDENTIFIER_NOT_ALLOWED
                 message: Indicated blockchainNetworkId is not allowed by business rules
     Generic400:
