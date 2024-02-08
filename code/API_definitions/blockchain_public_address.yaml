@@ -290,7 +290,6 @@ components:
           description: |-
             Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
             Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
-            
             - `<L1_Ecosystem>`: Represents a Layer 1 Blockchain Ecosystem (e.g. ethereum, bitcoin,...)
             - `<sub_id>`: Represents subsequents L2 and Testnet Blockchain Ecosystems, whenever they apply (e.g. bitcoin is a monolithic blockchain so as this concept does not apply)
 
