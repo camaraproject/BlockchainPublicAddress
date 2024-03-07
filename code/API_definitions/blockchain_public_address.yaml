@@ -13,10 +13,10 @@ info:
 
     # Resources and Operations overview
     This API provides three endpoints:
-     - **Endpoint to retrieve the Blockchain Public Address(es) associated with a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the sub (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
+     - **Endpoint to retrieve the Blockchain Public Address(es) associated with a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the `sub` (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
      Notice that the mobile phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the mobile phone number, and forward the request using a 2-legged approach to contact the other Telco Operator.
      - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the sub in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
-     - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the sub in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a mobile phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the `sub` in the Access Token. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
 
     # Further Info and Support
 
@@ -141,6 +141,8 @@ paths:
           $ref: "#/components/responses/PermissionDeniedForBlockchain403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "409":
+          $ref: "#/components/responses/Generic409"
         "429":
           $ref: "#/components/responses/Generic429"
         "500":
@@ -156,7 +158,7 @@ paths:
       summary: Unbinds Blockchain Public Address association to a mobile phone number
       description: |-
         Unbinds Blockchain Public Address to a mobile phone number. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform the unbind.
-        Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the user identified by its `sub` in the Access Token and, when identifier_bound_scopes are used, validate that the `id` included in the request refers to a bind for a mobile phone number appearing in the list of identifier_bound_scopes for the scope protecting this endpoint.
+        Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the user identified by its `sub` in the Access Token.
       operationId: deleteBlockchainPublicAddress
       security:
         - openId:
@@ -434,6 +436,19 @@ components:
             status: 404
             code: NOT_FOUND
             message: The specified resource is not found
+    Generic409:
+      description: Conflict
+      headers:
+        x-correlator:
+          $ref: "#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInfo"
+          example:
+            status: 409
+            code: ALREADY_EXISTS
+            message: "A specified resource duplicate entry found"
     Generic429:
       description: Too Many Requests
       headers:
