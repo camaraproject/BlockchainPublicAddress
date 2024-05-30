@@ -1,4 +1,4 @@
-| Org                    | Name                                                |
-| -----------------------| ----------------------------------------------------|
-| Telefonica             | Pedro Diez Garcia                                   |
-| Deutsche Telekom       | Georgios Papadopoulos                               |
+| Org                    | Name                     | GitHub                   |
+| -----------------------| -------------------------| -------------------------|
+| Telefonica             | Pedro Diez Garcia        | PedroDiez                |
+| Deutsche Telekom       | Georgios Papadopoulos    | grgpapadopoulos          |
