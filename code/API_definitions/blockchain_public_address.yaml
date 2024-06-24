@@ -222,7 +222,7 @@ components:
   schemas:
     BindBlockchainPublicAddressRequest:
       type: object
-      description: Payload to request the Bind of the Blockchain Public Adddress
+      description: Payload to request the Bind of the Blockchain Public Address
       required:
         - phoneNumber
         - blockchainPublicAddress
@@ -247,7 +247,7 @@ components:
             So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
             - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
               - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
-              - `polygon` blockhain would be identified by `evm:137` value (i.e. polygon mainnet).
+              - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
               - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
@@ -298,8 +298,8 @@ components:
             So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
             - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
               - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
-              - `polygon` blockhain would be identified by `evm:137` value (i.e. polygon mainnet).
-              - `celo` blockchain would be identified by `evm:42220` value (i.e. polygon mainnet).
+              - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
+              - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
@@ -356,7 +356,7 @@ components:
                 status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
                 message: Indicated currency is not found
-            RequiredCurrencyforBlockchain:
+            RequiredCurrencyForBlockchain:
               value:
                 status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
