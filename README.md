@@ -15,14 +15,11 @@ Repository to describe, develop, document and test the Blockchain Public Address
 * Describe, develop, document and test the APIs (with 1-2 Telcos)  
 * Started: June 2023
 
-## Contributing
-* Meetings
-  * Thursday, 13:00-14:00 CET/CEST (12:00 UTC, 11:00 UTC during European DST)
-  * [Registration / Join](https://zoom-lfx.platform.linuxfoundation.org/meeting/99588511751?password=c8764d4d-32b1-4aa6-91a5-a9cf74ee1aee)
-* Maling List
-  * Subscribe <sp-bpa+subscribe@lists.camaraproject.org>
-  * <https://lists.camaraproject.org/g/sp-bpa>
-* Lifecycle Status
+## Release Information
+<!-- Use/uncomment one or multiple the following options -->
+<!-- Pre-releases of this sub project are available in https://github.com/camaraproject/§repo_name§/releases -->
+<!-- The latest public release is available here: https://github.com/camaraproject/§repo_name§/releases/latest -->
+<!-- For changes see [CHANGELOG.md](https://github.com/camaraproject/§repo_name§/blob/main/CHANGELOG.md) -->
   * [Latest Release](https://github.com/camaraproject/BlockchainPublicAddress/releases/latest)
   * Release Information: Link to wiki
     * Note: Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
@@ -32,3 +29,12 @@ Repository to describe, develop, document and test the Blockchain Public Address
       - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/release-0.1.0/code/API_definitions/blockchain_public_address.yaml)
       - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/release-0.1.0/code/API_definitions/blockchain_public_address.yaml&nocors)
       - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/release-0.1.0/code/API_definitions/blockchain_public_address.yaml)
+
+## Contributing
+* Meetings
+    * [Registration/Join](https://zoom-lfx.platform.linuxfoundation.org/meeting/96846363178?password=9ebebe6c-c59c-42be-a709-7d5fd42fb626)
+    * Schedule: Bi-weekly on Thursdays, 13:00-14:00 CET/CEST (12:00 UTC, 11:00 UTC during European DST)
+    * Minutes: Access [meeting minutes](https://wiki.camaraproject.org/display/CAM/BlockchainPublicAddress).
+* Mailing List
+    * Subscribe / Unsubscribe to the mailing list of this Sub Project <https://lists.camaraproject.org/g/sp-bpa>.
+    * A message to the community of this Sub Project can be sent using <sp-bpa@lists.camaraproject.org>.
