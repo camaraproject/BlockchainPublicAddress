@@ -17,7 +17,7 @@ Repository to describe, develop, document and test the Blockchain Public Address
 
 ## Release Information
 * Note: Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
-* **The first initial release and version of Blockchain Public Address API is 0.1.0 and is available within the [release-0.1.0 branch](https://github.com/camaraproject/BlockchainPublicAddress/tree/release-0.1.0) ** There are expected changes in upcoming releases. It is addressed for early implementations, but not a stable version yet.
+* **The first initial release and version of Blockchain Public Address API is 0.1.0 and is available within the [release-0.1.0 branch](https://github.com/camaraproject/BlockchainPublicAddress/tree/release-0.1.0)** There are expected changes in upcoming releases. It is addressed for early implementations, but not a stable version yet.
 * API definition of Blockchain Public Address API is 0.1.0 (with inline documentation):
   - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/release-0.1.0/code/API_definitions/blockchain_public_address.yaml)
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/release-0.1.0/code/API_definitions/blockchain_public_address.yaml&nocors)
