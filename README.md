@@ -27,7 +27,7 @@ Repository to describe, develop, document and test the Blockchain Public Address
 
 ## Contributing
 * Meetings
-    * [Registration/Join](https://zoom-lfx.platform.linuxfoundation.org/meeting/96846363178?password=9ebebe6c-c59c-42be-a709-7d5fd42fb626)
+    * [Registration/Join](https://zoom-lfx.platform.linuxfoundation.org/meeting/99023344259?password=cb995600-56ee-48a2-ade1-607bb10487df)
     * Schedule: Bi-weekly on Thursdays, 13:00-14:00 CET/CEST (12:00 UTC, 11:00 UTC during European DST)
     * Minutes: Access [meeting minutes](https://wiki.camaraproject.org/x/iIAuAQ).
 * Mailing List
