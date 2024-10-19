@@ -357,7 +357,7 @@ components:
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
                 message: Indicated blockchainNetworkId is not valid
             GENERIC_400_INVALID_CURRENCY_FOR_BLOCKCHAIN:
-              description: Invalid currency 
+              description: Invalid currency
               value:
                 status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
