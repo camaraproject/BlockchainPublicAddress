@@ -18,6 +18,14 @@ info:
      - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the sub in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
      - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the `sub` in the Access Token. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
 
+    # Authorization and authentication
+
+    The "Camara Security and Interoperability Profile" provides details on how a client requests an access token. Please refer to Identify and Consent Management (https://github.com/camaraproject/IdentityAndConsentManagement/) for the released version of the Profile.
+
+    Which specific authorization flows are to be used will be determined during onboarding process, happening between the API Client and the Telco Operator exposing the API, taking into account the declared purpose for accessing the API, while also being subject to the prevailing legal framework dictated by local legislation.
+
+    It is important to remark that in cases where personal user data is processed by the API, and users can exercise their rights through mechanisms such as opt-in and/or opt-out, the use of 3-legged access tokens becomes mandatory. This measure ensures that the API remains in strict compliance with user privacy preferences and regulatory obligations, upholding the principles of transparency and user-centric data control.
+
     # Further Info and Support
 
     (FAQs will be added in a later version of the documentation)
