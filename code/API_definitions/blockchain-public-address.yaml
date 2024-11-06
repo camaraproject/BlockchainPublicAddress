@@ -47,8 +47,8 @@ tags:
   - name: Blockchain Public Address
     description: API operations to manage Blockchain Public Addresses
 paths:
-  /blockchain-public-addresses:
-    get:
+  /blockchain-public-addresses/retrieve-blockchains:
+    post:
       tags:
         - Blockchain Public Address
       summary: Retrieves Blockchain Public Address associated with a mobile phone number.
@@ -60,8 +60,13 @@ paths:
         - openId:
             - blockchain-public-address:read
       parameters:
-        - $ref: "#/components/parameters/PhoneNumber"
         - $ref: "#/components/parameters/x-correlator"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhoneNumber"
+        required: true
       responses:
         "200":
           description: OK
@@ -104,6 +109,7 @@ paths:
           $ref: "#/components/responses/Generic503"
         "504":
           $ref: "#/components/responses/Generic504"
+  /blockchain-public-addresses:
     post:
       tags:
         - Blockchain Public Address
@@ -122,6 +128,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/BindBlockchainPublicAddressRequest"
+        required: true
       responses:
         "201":
           description: Created
@@ -223,6 +230,15 @@ components:
       schema:
         type: string
   schemas:
+    PhoneNumber:
+      type: object
+      description: Payload to retrieve the Blockchain Public Address(es) associated to a given Phone Number
+      required:
+        - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
     BindBlockchainPublicAddressRequest:
       type: object
       description: Payload to request the Bind of the Blockchain Public Address
