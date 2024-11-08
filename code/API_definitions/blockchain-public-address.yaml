@@ -268,6 +268,7 @@ components:
               - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
               - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
               - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
+              - `aleph zero` blockchain would be identified by `evm:41455` value (i.e. aleph zero evm).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
@@ -319,6 +320,7 @@ components:
               - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
               - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
               - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
+              - `aleph zero` blockchain would be identified by `evm:41455` value (i.e. aleph zero evm).
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
