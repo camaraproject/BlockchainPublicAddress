@@ -20,11 +20,11 @@ info:
 
     # Authorization and authentication
 
-    The "Camara Security and Interoperability Profile" provides details on how a client requests an access token. Please refer to Identify and Consent Management (https://github.com/camaraproject/IdentityAndConsentManagement/) for the released version of the Profile.
+    The "Camara Security and Interoperability Profile" provides details of how an API consumer requests an access token. Please refer to Identity and Consent Management (https://github.com/camaraproject/IdentityAndConsentManagement/) for the released version of the profile.
 
-    Which specific authorization flows are to be used will be determined during onboarding process, happening between the API Client and the Telco Operator exposing the API, taking into account the declared purpose for accessing the API, while also being subject to the prevailing legal framework dictated by local legislation.
+    The specific authorization flows to be used will be agreed upon during the onboarding process, happening between the provider of the application consuming the API and the operator's API exposure platform, taking into account the declared purpose for accessing the API, whilst also being subject to the prevailing legal framework dictated by local legislation.
 
-    It is important to remark that in cases where personal user data is processed by the API, and users can exercise their rights through mechanisms such as opt-in and/or opt-out, the use of 3-legged access tokens becomes mandatory. This measure ensures that the API remains in strict compliance with user privacy preferences and regulatory obligations, upholding the principles of transparency and user-centric data control.
+    In cases where personal data is processed by the API and users can exercise their rights through mechanisms such as opt-in and/or opt-out, the use of three-legged access tokens is mandatory. This ensures that the API remains in compliance with privacy regulations, upholding the principles of transparency and user-centric privacy-by-design.
 
     # Further Info and Support
 
@@ -32,13 +32,13 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: wip
-  x-camara-commonalities: 0.4.0
+  version: 0.2.0-rc.1
+  x-camara-commonalities: 0.5.0
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/
 servers:
-  - url: "{apiRoot}/blockchain-public-address/vwip"
+  - url: "{apiRoot}/blockchain-public-address/v0.2rc1"
     variables:
       apiRoot:
         default: http://localhost:9091
@@ -103,12 +103,6 @@ paths:
           $ref: "#/components/responses/Generic404"
         "429":
           $ref: "#/components/responses/Generic429"
-        "500":
-          $ref: "#/components/responses/Generic500"
-        "503":
-          $ref: "#/components/responses/Generic503"
-        "504":
-          $ref: "#/components/responses/Generic504"
   /blockchain-public-addresses:
     post:
       tags:
@@ -155,12 +149,6 @@ paths:
           $ref: "#/components/responses/Generic409"
         "429":
           $ref: "#/components/responses/Generic429"
-        "500":
-          $ref: "#/components/responses/Generic500"
-        "503":
-          $ref: "#/components/responses/Generic503"
-        "504":
-          $ref: "#/components/responses/Generic504"
   /blockchain-public-addresses/{id}:
     delete:
       tags:
@@ -192,12 +180,6 @@ paths:
           $ref: "#/components/responses/Generic404"
         "429":
           $ref: "#/components/responses/Generic429"
-        "500":
-          $ref: "#/components/responses/Generic500"
-        "503":
-          $ref: "#/components/responses/Generic503"
-        "504":
-          $ref: "#/components/responses/Generic504"
 components:
   securitySchemes:
     openId:
@@ -229,6 +211,7 @@ components:
       required: true
       schema:
         type: string
+        pattern: '^\+[1-9][0-9]{4,14}$'
   schemas:
     PhoneNumber:
       type: object
@@ -239,6 +222,7 @@ components:
         phoneNumber:
           type: string
           description: A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+          pattern: '^\+[1-9][0-9]{4,14}$'
     BindBlockchainPublicAddressRequest:
       type: object
       description: Payload to request the Bind of the Blockchain Public Address
@@ -249,7 +233,8 @@ components:
       properties:
         phoneNumber:
           type: string
-          description: Mobile phone number to which the Blockchain Public Address will be bound. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+          description: Mobile phone number to which the Blockchain Public Address will be bound. A public identifier addressing a telephone subscription. In mobile networks it corresponds to the MSISDN (Mobile Station International Subscriber Directory Number). In order to be globally unique it has to be formatted in international format, according to E.164 standard, prefixed with '+'.
+          pattern: '^\+[1-9][0-9]{4,14}$'
         blockchainPublicAddress:
           type: string
           description: User's Blockchain Public Address to bind to the mobile `phoneNumber`
@@ -360,7 +345,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 400
+                  code:
+                    enum:
+                      - INVALID_ARGUMENT
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
           examples:
             GENERIC_400_INVALID_ARGUMENT:
               description: Invalid Argument. Generic Syntax Exception
@@ -397,7 +394,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 403
+                  code:
+                    enum:
+                      - PERMISSION_DENIED
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_NETWORK_IDENTIFIER_NOT_ALLOWED
           examples:
             GENERIC_403_PERMISSION_DENIED:
               description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
@@ -419,7 +426,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 400
+                  code:
+                    enum:
+                      - INVALID_ARGUMENT
           examples:
             GENERIC_400_INVALID_ARGUMENT:
               description: Invalid Argument. Generic Syntax Exception
@@ -435,7 +451,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 401
+                  code:
+                    enum:
+                      - UNAUTHENTICATED
+                      - AUTHENTICATION_REQUIRED
           examples:
             GENERIC_401_UNAUTHENTICATED:
               description: Request cannot be authenticated
@@ -457,7 +483,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 403
+                  code:
+                    enum:
+                      - PERMISSION_DENIED
           examples:
             GENERIC_403_PERMISSION_DENIED:
               description: Permission denied. OAuth2 token access does not have the required scope or when the user fails operational security
@@ -473,7 +508,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 404
+                  code:
+                    enum:
+                      - NOT_FOUND
           examples:
             GENERIC_404_NOT_FOUND:
               description: Resource is not found
@@ -489,7 +533,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 409
+                  code:
+                    enum:
+                      - ALREADY_EXISTS
           examples:
             GENERIC_409_ALREADY_EXISTS:
               description: Trying to create an existing resource
@@ -505,7 +558,16 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInfo"
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 429
+                  code:
+                    enum:
+                      - TOO_MANY_REQUESTS
           examples:
             GENERIC_429_TOO_MANY_REQUESTS:
               description: API Server request limit is overpassed
@@ -513,51 +575,3 @@ components:
                 status: 429
                 code: TOO_MANY_REQUESTS
                 message: Either out of resource quota or reaching rate limiting.
-    Generic500:
-      description: Server error
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorInfo"
-          examples:
-            GENERIC_500_INTERNAL:
-              description: Problem in Server side. Regular Server Exception
-              value:
-                status: 500
-                code: INTERNAL
-                message: Unknown server error. Typically a server bug.
-    Generic503:
-      description: Service unavailable
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorInfo"
-          examples:
-            GENERIC_503_UNAVAILABLE:
-              description: Service is not available. Temporary situation usually related to maintenance process in the server side
-              value:
-                status: 503
-                code: UNAVAILABLE
-                message: Service Unavailable.
-    Generic504:
-      description: Request time exceeded. If it happens repeatedly, consider reducing the request complexity
-      headers:
-        x-correlator:
-          $ref: '#/components/headers/x-correlator'
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorInfo"
-          examples:
-            GENERIC_504_TIMEOUT:
-              description: API Server Timeout
-              value:
-                status: 504
-                code: TIMEOUT
-                message: Request timeout exceeded.
