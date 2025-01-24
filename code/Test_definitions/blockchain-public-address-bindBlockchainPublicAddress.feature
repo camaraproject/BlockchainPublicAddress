@@ -8,10 +8,10 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation bindBlockchainPu
   # * A phone number and several blockchainPublicAddress in order to be able to perform bindings
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0-rc.1
 
   Background: Common bindBlockchainPublicAddress setup
-    Given the resource "/blockchain-public-address/v0.2/blockchain-public-addresses"
+    Given the resource "/blockchain-public-address/v0.2rc1/blockchain-public-addresses"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" is set to a UUID value
@@ -133,7 +133,7 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation bindBlockchainPu
 
   @bind_blockchain_public_address_C02.01_phone_number_not_schema_compliant
   Scenario: Phone number value does not comply with the schema
-    Given the header "Authorization" is set to a valid access which does not identify a single phone number
+    Given the header "Authorization" is set to a valid access token which does not identify a single phone number
     And the request body property "$.phoneNumber" does not comply with the OAS schema at "/components/schemas/PhoneNumber"
     When the HTTP "POST" request is sent
     Then the response status code is 400
