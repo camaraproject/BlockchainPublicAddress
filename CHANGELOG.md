@@ -21,7 +21,7 @@ This release contains the definition and documentation of
 * Blockchain Public Address v0.2.0-rc.1
 
 The API definition(s) are based on
-* Commonalities v0.5.0-alpha.1
+* Commonalities v0.5.0-rc.1
 * Identity and Consent Management v0.3.0-alpha.1
 
 ## Blockchain Public Address v0.2.0-rc.1
