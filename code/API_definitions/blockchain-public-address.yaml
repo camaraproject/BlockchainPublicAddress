@@ -32,13 +32,13 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: wip
-  x-camara-commonalities: 0.4.0
+  version: v0.2.0-rc.1
+  x-camara-commonalities: 0.5
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/
 servers:
-  - url: "{apiRoot}/blockchain-public-address/vwip"
+  - url: "{apiRoot}/blockchain-public-address/v0.2rc1"
     variables:
       apiRoot:
         default: http://localhost:9091
