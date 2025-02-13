@@ -17,22 +17,22 @@ Repository to describe, develop, document and test the Blockchain Public Address
 
 ## Release Information
 <!-- Use/uncomment one or multiple the following options -->
-<!-- Pre-releases of this sub project are available in https://github.com/camaraproject/§repo_name§/releases -->
-<!-- The latest public release is available here: https://github.com/camaraproject/§repo_name§/releases/latest -->
-<!-- For changes see [CHANGELOG.md](https://github.com/camaraproject/§repo_name§/blob/main/CHANGELOG.md) -->
+<!-- Pre-releases of this sub project are available in https://github.com/camaraproject/BlockchainPublicAddress/releases -->
+<!-- The latest public release is available here: https://github.com/camaraproject/BlockchainPublicAddress/releases/latest -->
+<!-- For changes see [CHANGELOG.md](/CHANGELOG.md) -->
 * Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
 * **The Release [r1.1 - rc](https://github.com/camaraproject/BlockchainPublicAddress/blob/main/CHANGELOG.md#r1.1---rc) for the Blockchain Public Address APIs Family is available.**
 <br>This is a release candidate. Until the public release there are bug fixes to be expected. The release candidate is suitable for implementors, but it is not recommended to use the API with customers in productive environments.
 
 * The release **r1.1 - rc** is available in [r1.1](https://github.com/camaraproject/BlockchainPublicAddress/tree/r2.1), and includes the following APIs:
-* API definition of Blockchain Public Address API is 0.1.0 (with inline documentation):
+* API definition of Blockchain Public Address API is 0.2.0-rc.1 (with inline documentation):
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml&nocors)
   - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml)
   - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.1/code/API_definitions/blockchain-public-address.yaml)
 
 * Other releases of this sub project are available in [BlockchainPublicAddress Releases](https://github.com/camaraproject/BlockchainPublicAddress/releases)
-* For changes see [CHANGELOG.md](https://github.com/camaraproject/BlockchainPublicAddress/blob/main/CHANGELOG.md)
+* For changes see [CHANGELOG.md](/CHANGELOG.md)
 
 ## Contributing
 * Meetings

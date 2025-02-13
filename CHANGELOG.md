@@ -2,16 +2,17 @@
 
 ## Table of Contents
 
-- [r2.1 - rc](#r11---rc)
+- [r1.1 - rc](#r11---rc)
 - [v0.1.0](#v010)
 
 **Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until it has been released. For example, changes may be reverted before a release is published. For the best results, use the latest published release.**
 
 The below sections record the changes for each API version in each release as follows:
 
-* for each first alpha or release-candidate API version, all changes since the release of the previous public API version
-* for subsequent alpha or release-candidate API versions, the delta with respect to the previous pre-release
-* for a public API version, the consolidated changes since the release of the previous public API version
+* for an alpha release, the delta with respect to the previous release
+* for the first release-candidate, all changes since the last public release
+* for subsequent release-candidate(s), only the delta to the previous release-candidate
+* for a public release, the consolidated changes since the previous public release
 
 ## r1.1 - rc
 
@@ -22,7 +23,7 @@ This release contains the definition and documentation of
 
 The API definition(s) are based on
 * Commonalities v0.5.0-rc.1
-* Identity and Consent Management v0.3.0-alpha.1
+* Identity and Consent Management v0.3.0-rc.1
 
 ## Blockchain Public Address v0.2.0-rc.1
 
@@ -60,7 +61,7 @@ The API definition(s) are based on
 * N/A
 
 
-**Full Changelog**: https://github.com/camaraproject/CarrierBillingCheckOut/compare/v0.1.0...r1.1
+**Full Changelog**: https://github.com/camaraproject/BlockchainPublicAddress/compare/v0.1.0...r1.1
 
 ## 0.1.0
 
