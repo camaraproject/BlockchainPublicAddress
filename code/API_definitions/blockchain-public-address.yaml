@@ -5,7 +5,6 @@ info:
     Allows to manage Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
-    - **NaaS**: *Network-as-a-Service* model where Telco Operator Network resources are exposed to third parties through APIs. In this particular API, Blockchain Public Address is managed following this model.
     - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencyies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
     to receive or request payments in cryptocurrency.
 
@@ -14,10 +13,9 @@ info:
 
     # Resources and Operations overview
     This API provides three endpoints:
-     - **Endpoint to retrieve the Blockchain Public Address(es) associated with a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the `sub` (user_id) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
-     Notice that the mobile phone number used as input may even not belong to the same Telco Operator exposing the API. It is expected a communication between Telco Operators to resolve the Blockchain Public Address(es). For example a Telco Operator will receive the request, identify the Telco Operator which owns the mobile phone number, and forward the request using a 2-legged approach to contact the other Telco Operator.
-     - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation is intended to be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the sub in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
-     - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation is intended to be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the `sub` in the Access Token. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to retrieve the Blockchain Public Address(es) associated with a mobile phone number sent as input**. The Blockchain Public Address is information made available by the user, in association to their mobile phone number. Then, this endpoint may be accessed in 2-legged or in 3-legged mode. Even in 3-legged mode, the mobile phone number included as input field does not need to belong to the `sub` (representing the User) for which the Access Token is issued. This will enable a user to ask for the Blockchain Public Address(es) of any mobile phone number, in order to perform a transaction with one of the available ones (send or request).
+     - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation MUST be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the `sub` (representing the User) in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
+     - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation MUST be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the `sub` (representing the User) in the Access Token. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
 
     # Authorization and authentication
 
@@ -33,13 +31,13 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: wip
+  version: v0.2.0-rc.1
   x-camara-commonalities: 0.5
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/BlockchainPublicAddress
 servers:
-  - url: "{apiRoot}/blockchain-public-address/vwip"
+  - url: "{apiRoot}/blockchain-public-address/v0.2rc1"
     variables:
       apiRoot:
         default: http://localhost:9091
@@ -112,6 +110,8 @@ paths:
       description:
         Binds Blockchain Public Address to a mobile phone number. If the mobile phone number is already bound to a Blockchain Public Address, this operation will add a new bound Blockchain Public Address to the mobile phone number. This operation is intended to be used
         with a 3-legged Access Token, and the indicated mobile phone number must belong to the user identified by its `sub` in the Access Token; this is because only the user of the mobile phone number must be able to perform the bind.
+
+        Specifically for this functionality, when a binding operation indicates a `blockchainNetworkId` not allowed by Telco Operator exception `403 - BLOCKCHAIN_PUBLIC_ADDRESS.BLOCKCHAIN_NETWORK_IDENTIFIER_NOT_ALLOWED` will be generated.
       operationId: bindBlockchainPublicAddress
       security:
         - openId:
