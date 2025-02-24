@@ -18,14 +18,14 @@ Repository to describe, develop, document and test the Blockchain Public Address
 ## Release Information
 * Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* **The Release [r1.1 - rc](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.1) for the Blockchain Public Address APIs Family is available.**
-<br>This is a release candidate. Until the public release there are bug fixes to be expected. The release candidate is suitable for implementors, but it is not recommended to use the API with customers in productive environments.
+* **The Release [r1.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2) for the Blockchain Public Address APIs Family is available.**
+<br>This is a public release.
 
-* The release **r1.1 - rc** is available in [r1.1](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.1), and includes the following APIs:
-* API definition of Blockchain Public Address API is version 0.2.0-rc.1 (with inline documentation):
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml&nocors)
-  - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml)
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.1/code/API_definitions/blockchain-public-address.yaml)
+* The release **r1.2** is available in [r1.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2), and includes the following APIs:
+* API definition of Blockchain Public Address API is version 0.2.0 (with inline documentation):
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml&nocors)
+  - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.2/code/API_definitions/blockchain-public-address.yaml)
 
 * Other releases of this sub project are available in [BlockchainPublicAddress Releases](https://github.com/camaraproject/BlockchainPublicAddress/releases)
 * For changes see [CHANGELOG.md](/CHANGELOG.md)

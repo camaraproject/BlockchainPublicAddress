@@ -8,7 +8,7 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation bindBlockchainPu
   # * A phone number and several blockchainPublicAddress in order to be able to perform bindings
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0-rc.1
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0
 
   Background: Common bindBlockchainPublicAddress setup
     Given the resource "/blockchain-public-address/v0.2rc1/blockchain-public-addresses"
