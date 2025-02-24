@@ -31,13 +31,13 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: v0.2.0-rc.1
+  version: v0.2.0
   x-camara-commonalities: 0.5
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/BlockchainPublicAddress
 servers:
-  - url: "{apiRoot}/blockchain-public-address/v0.2rc1"
+  - url: "{apiRoot}/blockchain-public-address/v0.2"
     variables:
       apiRoot:
         default: http://localhost:9091
