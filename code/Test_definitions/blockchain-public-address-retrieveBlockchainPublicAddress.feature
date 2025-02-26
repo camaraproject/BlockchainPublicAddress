@@ -105,7 +105,7 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation retrieveBlockcha
   @retrieve_blockchain_public_address_403.01_invalid_token_permissions
   Scenario: Inconsistent access token permissions
     # To test this, an access token has to be obtained without blockchain-public-address:read scope
-    Given the request body is set to a valid request body 
+    Given the request body is set to a valid request body
     And the header "Authorization" is set to a valid access token emitted without blockchain-public-address:read scope
     When the HTTP "POST" request is sent
     Then the response status code is 403
