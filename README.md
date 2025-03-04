@@ -18,7 +18,7 @@ Repository to describe, develop, document and test the Blockchain Public Address
 ## Release Information
 * Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* **The Release [r1.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2) for the Blockchain Public Address APIs Family is available.**
+* **The Release [r1.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2) for the Blockchain Public Address APIs is available.**
 <br>This is a public release.
 
 * The release **r1.2** is available in [r1.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2), and includes the following APIs:
