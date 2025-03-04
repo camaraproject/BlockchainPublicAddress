@@ -11,7 +11,7 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation deleteBlockchain
   # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0
 
   Background: Common deleteBlockchainPublicAddress setup
-    Given the resource "/blockchain-public-address/v0.2rc1/blockchain-public-addresses/{id}"
+    Given the resource "/blockchain-public-address/v0.2/blockchain-public-addresses/{id}"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" is set to a UUID value
