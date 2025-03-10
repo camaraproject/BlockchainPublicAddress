@@ -8,10 +8,10 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation retrieveBlockcha
   # * A phone number with several existing bindings to be able to perform queries
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0-rc.1
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.2.0
 
   Background: Common retrieveBlockchainPublicAddress setup
-    Given the resource "/blockchain-public-address/v0.2rc1/blockchain-public-addresses/retrieve-blockchains"
+    Given the resource "/blockchain-public-address/v0.2/blockchain-public-addresses/retrieve-blockchains"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" is set to a UUID value
@@ -105,7 +105,7 @@ Feature: CAMARA Blockchain Public Address API, v0.2 - Operation retrieveBlockcha
   @retrieve_blockchain_public_address_403.01_invalid_token_permissions
   Scenario: Inconsistent access token permissions
     # To test this, an access token has to be obtained without blockchain-public-address:read scope
-    Given the request body is set to a valid request body 
+    Given the request body is set to a valid request body
     And the header "Authorization" is set to a valid access token emitted without blockchain-public-address:read scope
     When the HTTP "POST" request is sent
     Then the response status code is 403

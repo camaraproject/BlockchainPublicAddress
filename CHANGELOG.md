@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+- [r1.2](#r12)
 - [r1.1 - rc](#r11---rc)
 - [v0.1.0](#v010)
 
@@ -13,6 +14,52 @@ The below sections record the changes for each API version in each release as fo
 * for the first release-candidate, all changes since the last public release
 * for subsequent release-candidate(s), only the delta to the previous release-candidate
 * for a public release, the consolidated changes since the previous public release
+
+## r1.2
+
+## Release Notes
+
+This release contains the definition and documentation of
+* Blockchain Public Address v0.2.0
+
+The API definition(s) are based on
+* Commonalities v0.5.0
+* Identity and Consent Management v0.3.0
+
+## Blockchain Public Address v0.2.0
+
+**Blockchain Public Address v0.2.0 is the first public release version for v0.2.0 of the Blockchain Public Address API.**
+- **This version contains significant changes compared to v0.1.0, and it is not backward compatible:**
+  - Refactor `retrieveBlockchainPublicAddress` endpoint to use an HTTP POST request
+  - Error model aligment with commonalities, which implies use of normalization values (i.e. enums) for `status` and `code`
+  - Removal of `5XX` errors
+
+
+- API definition **with inline documentation**:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml&nocors)
+  - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.2/code/API_definitions/blockchain-public-address.yaml)
+
+**Main changes since [r1.1 - rc](#r11---rc)**
+
+### Added
+* N/A
+
+### Changed
+* Adapt API specification version and servers.url for public release in https://github.com/camaraproject/BlockchainPublicAddress/pull/74.
+* Adapt Testing version for public release in https://github.com/camaraproject/BlockchainPublicAddress/pull/74.
+
+### Fixed
+* N/A
+
+### Removed
+* N/A
+
+## New Contributors
+* N/A
+
+
+**Full Changelog**: https://github.com/camaraproject/BlockchainPublicAddress/compare/v0.1.0...r1.2
 
 ## r1.1 - rc
 
