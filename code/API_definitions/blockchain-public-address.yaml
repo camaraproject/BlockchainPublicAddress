@@ -621,7 +621,7 @@ components:
               description: Enhanced Binding validaton procedure by means of nonce and signature verification is not supported
               value:
                 status: 422
-                code: UNSUPPORTED_ENHANCED_VALIDATION
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION
                 message: Enhanced Binding validation procedure is not supported
     Generic429:
       description: Too Many Requests

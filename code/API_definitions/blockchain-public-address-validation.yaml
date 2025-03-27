@@ -1,4 +1,3 @@
-#NEW API Blockchain Public Address Validation Nonce (TO BE REMOVED)
 openapi: 3.0.3
 info:
   title: Blockchain Public Address Validation Nonce
