@@ -5,7 +5,7 @@ info:
     Allows to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
-    - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencyies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
+    - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
     to receive or request payments in cryptocurrency.
 
     # API Functionality
