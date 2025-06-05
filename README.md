@@ -34,7 +34,7 @@ Repository to describe, develop, document and test the Blockchain Public Address
 * Meetings
     * [Registration/Join](https://zoom-lfx.platform.linuxfoundation.org/meeting/99023344259?password=cb995600-56ee-48a2-ade1-607bb10487df)
     * Schedule: Bi-weekly on Thursdays, 13:00-14:00 CET/CEST (12:00 UTC, 11:00 UTC during European DST)
-    * Minutes: Access [meeting minutes](https://lf-camaraproject.atlassian.net/wiki/spaces/CAM/pages/14553270/Minutes+-+BlockchainPublicAddress+Meetings).
+    * Minutes: Access [meeting minutes](https://lf-camaraproject.atlassian.net/wiki/x/thDe).
 * Mailing List
     * Subscribe / Unsubscribe to the mailing list of this Sub Project <https://lists.camaraproject.org/g/sp-bpa>.
     * A message to the community of this Sub Project can be sent using <sp-bpa@lists.camaraproject.org>.
