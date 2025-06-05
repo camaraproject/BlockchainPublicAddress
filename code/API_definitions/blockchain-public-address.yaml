@@ -5,7 +5,7 @@ info:
     Allows to manage Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
-    - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencyies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
+    - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
     to receive or request payments in cryptocurrency.
 
     # API Functionality
@@ -17,7 +17,7 @@ info:
      - **Endpoint to associate a mobile phone number with a Blockchain Public Address**. It does not matter if the mobile phone number is already bound to a Blockchain Public Address, as this operation adds a new Blockchain Public Address. This operation MUST be used with a 3-legged Access Token, and the indicated mobile phone number must belong to the `sub` (representing the User) in the Access Token; this is because only the user of the mobile phone number must be able to perform a bind. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
      - **Endpoint to remove the association of a mobile phone number with a Blockchain Public Address**. This operation MUST be used with a 3-legged Access Token; this is because only the user of the mobile phone number must be able to perform an unbind. Note: Due to this, the API Server must validate that the `id` included in the request refers to a bind for a mobile phone number belonging to the `sub` (representing the User) in the Access Token. As a consequence, this operation will only work with mobile phone numbers of the Telco Operator exposing the API.
 
-    ## Enforcement of the Blockhain Public Address ownership in binding process
+    ## Enforcement of the Blockchain Public Address ownership in binding process
 
     TBD: Explain the feature and provide a diagram
 
@@ -591,7 +591,7 @@ components:
     Generic422:
       description: |-
         Unprocessable content.
-         - Enhanced Binding validaton procedure by means of nonce and signature verification is not supported ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION","message": "Enhanced Binding validation procedure is not supported")
+         - Enhanced Binding validation procedure by means of nonce and signature verification is not supported ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION","message": "Enhanced Binding validation procedure is not supported")
       headers:
         x-correlator:
           $ref: "#/components/headers/x-correlator"
@@ -610,7 +610,7 @@ components:
                       - BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION
           examples:
             GENERIC_422_UNSUPPORTED_ENHANCED_VALIDATION:
-              description: Enhanced Binding validaton procedure by means of nonce and signature verification is not supported
+              description: Enhanced Binding validation procedure by means of nonce and signature verification is not supported
               value:
                 status: 422
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION
