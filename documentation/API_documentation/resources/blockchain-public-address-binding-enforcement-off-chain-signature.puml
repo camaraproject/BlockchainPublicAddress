@@ -1,0 +1,82 @@
+@startuml
+
+title Sequence Diagram (Binding Enforcement - Off-Chain Signature)
+
+actor User
+participant "Client App" as Client
+database "Telco IDP / AuthZ Server" as Auth
+participant "API Server" as Server
+participant "Challenge Module" as CM
+participant "Binding Database" as DB
+participant "Wallet " as Wallet
+
+== (A) Obtain 3-Legged Access Token ==
+User -> Client: [1] Login into App - Initiate AuthN/AuthZ 
+Client <-> Auth: [2] CAMARA OIDC Authorization Code Flow\n (Network-Based Auth)
+Auth -> Auth: [3] Verify user & phone
+Auth --> Client: [4] Return Access Token
+note right of Client
+  Access Token states that
+  the user is the owner of phoneNumber 
+  Telco Operators can infer the associated MSISDN out of the Access Token
+end note
+
+== (B) Request Nonce ==
+User -> Client: [5] Wants to bind \nphoneNumber to address
+Client -> Server: [6] POST blockchain-public-address-validation/vx/nonce \n using the A
+note right of Client
+  Authorization: Bearer {Access Token}
+  Body includes:
+  - blockchainPublicAddress
+end note
+
+activate Server
+Server -> Server: [7] Validate Access Token (3-legged, scope, infer phoneNumber)
+Server -> CM: [8] Request nonce generation \n(store {phoneNumber, blockchainPublicAddress})
+CM -> CM: [9] Generate nonce \nAssociate to {phoneNumber, blockchainPublicAddress})
+CM --> Server: [10] Return generated nonce
+Server --> Client: [11] Return 201 Created (nonce) 
+deactivate Server
+Client -> User: [12] Return nonce for its signing
+
+== (C) Off-Chain Signature ==
+User -> Wallet: [13] personal_sign("Message + nonce") with user private_key
+note right of Wallet
+  The Wallet prompts the user
+  to sign the nonce off-chain
+end note
+Wallet --> User: [14] Return signature
+User -> Client: [15] Provide signature to the app
+
+== (D) Binding Enforcement ==
+Client -> Server: [16] POST /blockchain-public-addresses
+note right of Client
+  Authorization: Bearer {Access Token}
+  Body includes:
+    - phoneNumber
+    - blockchainPublicAddress
+    - nonce
+    - signature
+end note
+
+activate Server
+Server -> Server: [17] Validate Access Token (3-legged, scope, infer phoneNumber)
+Server -> Server: [18] Verify that phoneNumber from Access Token matches payload
+Server -> CM: [19] Retrieve store nonce for {phoneNumber, blockchainPublicAddress}
+CM --> Server: [20] Return stored nonce
+Server -> Server: [21] Perform nonce validation \n(provided nonce matches stored value)
+Server -> Server: [22] Perform signature validation \n(signature valid for blockchainPublicAddress)
+
+alt Nonce and Signature valid
+Server -> DB: [23] Create binding record (phoneNumber -> blockchainPublicAddress)
+DB --> Server: [24] Return binding id
+Server --> Client: [25] Return 201 Created (binding id)
+else Nonce or Signature invalid
+Server --> Client: [26] Return 400 BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE or\n 400 BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE
+end
+
+deactivate Server
+
+Client --> User: [27] Show success (blockchainPublicAddress \nassociated to phoneNumber)
+
+@enduml
