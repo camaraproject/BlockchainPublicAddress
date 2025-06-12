@@ -37,7 +37,7 @@ The API definition(s) are based on
 
 - API definition **with inline documentation**:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml&nocors)
-  - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.2/code/API_definitions/blockchain-public-address.yaml)
   - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.2/code/API_definitions/blockchain-public-address.yaml)
 
 **Main changes since [r1.1 - rc](#r11---rc)**
@@ -83,7 +83,7 @@ The API definition(s) are based on
 
 - API definition **with inline documentation**:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml&nocors)
-  - [View it on Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r1.1/code/API_definitions/blockchain-public-address.yaml)
   - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r1.1/code/API_definitions/blockchain-public-address.yaml)
 
 ### Added
