@@ -19,7 +19,7 @@ info:
 
     ## Enforcement of the Blockchain Public Address ownership in binding process
 
-    The enforcement of the Blockchain Public Address ownership in the binding process is optional, and it is not mandatory to use the nonce and signature fields. If the API consumer does not want to enforce this, it can simply omit these fields in the request body.
+    The enforcement of the Blockchain Public Address ownership in the binding process is optional, and it is not mandatory to use the `nonce` and `signature` fields. If the API consumer does not want to enforce this, it can simply omit these fields in the request body.
 
     This enforcement is aimed to ensure that the Blockchain Public Address being bound to a mobile phone number is indeed owned by the user (i.e. person behind) of that mobile phone number.
     The API consumer can request the user to sign a `nonce` off-chain, and then include the `nonce` and `signature` in the request body when binding the Blockchain Public Address. The API Server will then verify that the `signature` is valid for the given `nonce` and `blockchainPublicAddress`.
