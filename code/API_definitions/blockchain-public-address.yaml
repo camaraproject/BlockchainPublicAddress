@@ -32,7 +32,7 @@ info:
 
     It comprises four steps:
     - **(A) Obtain 3-Legged Access Token**: This is the regular process of obtaining a CAMARA 3-legged Access Token. CAMARA OIDC Authorization Code Flow is mentioned for illustrative purposes, other CAMARA 3-legged Access Token flows may be used. Check CAMARA Identity and Consent Management WG for details.
-    - **(B) Request a nonce from the API Server**: This is the feature provided by **_CAMARA Blockchain Public Address Validation Nonce_**, allowing the API consumer to request a `nonce` associated to the `blockchainPublicAddress` to be signed by the user.
+    - **(B) Request a nonce from the API Server**: This is the feature provided by **_CAMARA Blockchain Public Address Validation Nonce API_**, allowing the API consumer to request a `nonce` associated to the `blockchainPublicAddress` to be signed by the user.
     - **(C) Ask the user to sign the nonce off-chain**: The API consumer will use this `nonce` to ask the user to sign it off-chain. The user will sign the `nonce` using their private key. The API consumer will then obtain a `signature`, which is a cryptographic proof that the user owns the `blockchainPublicAddress`.
     - **(D) Bind the Blockchain Public Address to the mobile phone number**: This step includes the `nonce` and `signature` in the request body. For signature validation, there are many options (e.g. https://ecrecover.org/, tools like `ethers.js` or `web3.js`); that is an implementation topic out of scope of this CAMARA API specification.
 
