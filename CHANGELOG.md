@@ -82,17 +82,18 @@ The API definition(s) are based on
 ### Added
 * Baseline API specification definition in https://github.com/camaraproject/BlockchainPublicAddress/pull/76.
 * New section `# Additional CAMARA error responses` in `info.description` field in https://github.com/camaraproject/BlockchainPublicAddress/pull/102.
-
-### Changed
 * New pattern for `x-correlator` and model aligment with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/102.
 * Generate User Stories in https://github.com/camaraproject/BlockchainPublicAddress/pull/103.
 * Generate Gherkin feature file, aligned with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/104.
+
+### Changed
+* N/A
 
 ### Fixed
 * N/A
 
 ### Removed
-* `401 - AUTHENTICATION_REQUIRED` error in https://github.com/camaraproject/BlockchainPublicAddress/pull/102.
+* N/A
 
 ## New Contributors
 * N/A
@@ -150,7 +151,7 @@ The API definition(s) are based on
 
 ## Release Notes
 
-This release contains the definition and documentation of
+This pre-release contains the definition and documentation of
 * Blockchain Public Address v0.2.0-rc.1
 
 The API definition(s) are based on

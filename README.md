@@ -30,7 +30,7 @@ Sandbox API Repository to describe, develop, document, and test the BlockchainPu
 * **The pre-release [r2.1 - rc](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.1) for the Blockchain Public Address APIs is available.**
 <br>This is a release candidate. Until the public release there are bug fixes to be expected. The release candidate is suitable for implementors, but it is not recommended to use the APIs with customers in productive environments.
 
-* The release **r2.1 - rc** is available in [r2.1](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.1), and includes the following APIs:
+* This pre-release includes the following APIs:
 - API name: Blockchain Public Address - API Definition v0.3.0-rc.1 with inline documentation:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml&nocors)
   - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml)

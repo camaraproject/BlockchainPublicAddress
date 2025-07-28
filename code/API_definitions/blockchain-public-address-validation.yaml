@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Blockchain Public Address Validation Nonce
+  title: Blockchain Public Address Validation
   description: |-
     Allows to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
 
