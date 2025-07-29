@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+- [r2.1 - rc](#r21---rc)
 - [r1.2](#r12)
 - [r1.1 - rc](#r11---rc)
 - [v0.1.0](#v010)
@@ -14,6 +15,91 @@ The below sections record the changes for each API version in each release as fo
 * for the first release-candidate, all changes since the last public release
 * for subsequent release-candidate(s), only the delta to the previous release-candidate
 * for a public release, the consolidated changes since the previous public release
+
+## r2.1 - rc
+
+## Release Notes
+
+This pre-release contains the definition and documentation of
+* Blockchain Public Address v0.3.0-rc.1
+* Blockchain Public Address Validation v0.1.0-rc.1
+
+The API definition(s) are based on
+* Commonalities v0.6.0-rc.1
+* Identity and Consent Management v0.4.0-rc.1
+
+## Blockchain Public Address v0.3.0-rc.1
+
+**Blockchain Public Address v0.3.0-rc.1 is the first release-candidate version for v0.3.0 of the Blockchain Public Address API.**
+- **This version contains changes compared to v0.2.0, and it is not backward compatible:**
+  - Removal of `401 - AUTHENTICATION_REQUIRED`
+  - New pattern for `x-correlator`
+  - Addition of a new section `# Additional CAMARA error responses` in `info.description` field
+  - Addition of `422 - BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION`
+  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE`
+  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE`
+  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.BOTH_NONCE_SIGNATURE_REQUIRED`
+
+
+- API definition **with inline documentation**:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.1/code/API_definitions/blockchain-public-address.yaml)
+
+**Main changes since [r1.2](#r12)**
+
+### Added
+* Binding enforcement procedure, including addition of new errors `422 - BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION`, `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE`, `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE` and `400 - BLOCKCHAIN_PUBLIC_ADDRESS.BOTH_NONCE_SIGNATURE_REQUIRED` in https://github.com/camaraproject/BlockchainPublicAddress/pull/76, https://github.com/camaraproject/BlockchainPublicAddress/pull/95 and https://github.com/camaraproject/BlockchainPublicAddress/pull/97.
+* New section `# Additional CAMARA error responses` in `info.description` field in https://github.com/camaraproject/BlockchainPublicAddress/pull/99.
+
+### Changed
+* New pattern for `x-correlator` and model aligment with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/99.
+* Update User Stories adding a new user story for Binding Enforcement and making some wording alignment in https://github.com/camaraproject/BlockchainPublicAddress/pull/100.
+* Update Gherkin feature files, adding a new test for testing invalid x-correlator value in all API endpoints, adding a specific test to check binding enforcement in `bindBlockchainPublicAddress` endpoint and making some wording alignments with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/101.
+
+### Fixed
+* N/A
+
+### Removed
+* `401 - AUTHENTICATION_REQUIRED` error in https://github.com/camaraproject/BlockchainPublicAddress/pull/99.
+
+## New Contributors
+* N/A
+
+## Blockchain Public Address Validation v0.1.0-rc.1
+
+**Blockchain Public Address Validation v0.1.0-rc.1 is the first release-candidate version for v0.1.0 of the Blockchain Public Address Validation API.**
+- **This version defines a new API:**
+  - Initial version covering the following functionality and related endpoints:
+    - New endpoint `createBlockchainPublicAddressValidationNonce`, to generate a nonce (one-time challenge) in order to be able to perform binding enforcement in binding process defined in Blockchain Public Address API.
+
+
+- API definition **with inline documentation**:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address-validation.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address-validation.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.1/code/API_definitions/blockchain-public-address-validation.yaml)
+
+### Added
+* Baseline API specification definition in https://github.com/camaraproject/BlockchainPublicAddress/pull/76.
+* New section `# Additional CAMARA error responses` in `info.description` field in https://github.com/camaraproject/BlockchainPublicAddress/pull/102.
+* New pattern for `x-correlator` and model aligment with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/102.
+* Generate User Stories in https://github.com/camaraproject/BlockchainPublicAddress/pull/103.
+* Generate Gherkin feature file, aligned with Commonalities in https://github.com/camaraproject/BlockchainPublicAddress/pull/104.
+
+### Changed
+* N/A
+
+### Fixed
+* N/A
+
+### Removed
+* N/A
+
+## New Contributors
+* N/A
+
+
+**Full Changelog**: https://github.com/camaraproject/BlockchainPublicAddress/compare/r1.2...r2.1
 
 ## r1.2
 
@@ -65,7 +151,7 @@ The API definition(s) are based on
 
 ## Release Notes
 
-This release contains the definition and documentation of
+This pre-release contains the definition and documentation of
 * Blockchain Public Address v0.2.0-rc.1
 
 The API definition(s) are based on
