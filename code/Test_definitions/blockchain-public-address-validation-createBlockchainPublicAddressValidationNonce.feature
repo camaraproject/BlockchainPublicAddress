@@ -8,7 +8,7 @@ Feature: CAMARA Blockchain Public Address Validation API, v0.1.0-rc.1 - Operatio
   # * A valid blockchainPublicAddress in order to be able to generate nonces
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address-validation.yaml, version 0.1.0-rc.1
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address-validation.yaml
 
   Background: Common createBlockchainPublicAddressValidationNonce setup
     Given the resource "/blockchain-public-address-validation/v0.1rc1/blockchain-public-addresses"

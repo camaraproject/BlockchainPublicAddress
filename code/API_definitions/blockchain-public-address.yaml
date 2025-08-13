@@ -355,20 +355,20 @@ components:
             type: string
     ErrorInfo:
       type: object
-      properties:
-        status:
-          type: integer
-          description: HTTP status code returned along with this error response
-        code:
-          type: string
-          description: Code given to this error
-        message:
-          type: string
-          description: Detailed error description
       required:
+        - message
         - status
         - code
-        - message
+      properties:
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
   responses:
     InvalidArgumentForBlockchain400:
       description: |

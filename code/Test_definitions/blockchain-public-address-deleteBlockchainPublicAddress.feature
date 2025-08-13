@@ -8,7 +8,7 @@ Feature: CAMARA Blockchain Public Address API, v0.3.0-rc.1 - Operation deleteBlo
   # * A phone number with several existing bindings to be able to perform unbindings
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.3.0-rc.1
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml
 
   Background: Common deleteBlockchainPublicAddress setup
     Given the resource "/blockchain-public-address/v0.3rc1/blockchain-public-addresses/{id}"
