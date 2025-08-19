@@ -1,4 +1,4 @@
-Feature: CAMARA Blockchain Public Address API, v0.3.0-rc.1 - Operation retrieveBlockchainPublicAddress
+Feature: CAMARA Blockchain Public Address API, v0.3.0 - Operation retrieveBlockchainPublicAddress
   # Input to be provided by the implementation to the tester
   #
   # Implementation indications:
@@ -8,10 +8,10 @@ Feature: CAMARA Blockchain Public Address API, v0.3.0-rc.1 - Operation retrieveB
   # * A phone number with several existing bindings to be able to perform queries
   #
   #
-  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml, version 0.3.0-rc.1
+  # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml
 
   Background: Common retrieveBlockchainPublicAddress setup
-    Given the resource "/blockchain-public-address/v0.3rc1/blockchain-public-addresses/retrieve-blockchains"
+    Given the resource "/blockchain-public-address/v0.3/blockchain-public-addresses/retrieve-blockchains"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
