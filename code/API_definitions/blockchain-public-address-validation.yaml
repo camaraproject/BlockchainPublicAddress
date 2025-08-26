@@ -137,20 +137,20 @@ components:
             One-time challenge generated associated to indicated `blockchainPublicAddress`.
     ErrorInfo:
       type: object
-      properties:
-        status:
-          type: integer
-          description: HTTP status code returned along with this error response
-        code:
-          type: string
-          description: Code given to this error
-        message:
-          type: string
-          description: Detailed error description
       required:
         - status
         - code
         - message
+      properties:
+        message:
+          type: string
+          description: A human-readable description of what the event represents
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
   responses:
     Generic400:
       description: Problem with the client request
