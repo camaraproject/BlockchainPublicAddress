@@ -27,7 +27,7 @@ Sandbox API Repository to describe, develop, document, and test the BlockchainPu
 ## Release Information
 * Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* **The release [r2.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.2) for the Blockchain Public Address APIs is available.**
+* **NEW public release [r2.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.2) for the Blockchain Public Address APIs is available.**
 <br>This is a public release.
 
 * This release includes the following APIs:
