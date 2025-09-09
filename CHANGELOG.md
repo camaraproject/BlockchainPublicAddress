@@ -21,7 +21,7 @@ The below sections record the changes for each API version in each release as fo
 
 ## Release Notes
 
-This release contains the definition and documentation of
+This public release contains the definition and documentation of
 * Blockchain Public Address v0.3.0
 * Blockchain Public Address Validation v0.1.0
 
