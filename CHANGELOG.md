@@ -32,15 +32,7 @@ The API definition(s) are based on
 ## Blockchain Public Address v0.3.0
 
 **Blockchain Public Address v0.3.0 is the first public release version for v0.3.0 of the Blockchain Public Address API.**
-- **This version contains changes compared to v0.2.0:**
-  - Removal of `401 - AUTHENTICATION_REQUIRED`
-  - New pattern for `x-correlator`
-  - Addition of a new section `# Additional CAMARA error responses` in `info.description` field
-  - Addition of `422 - BLOCKCHAIN_PUBLIC_ADDRESS.UNSUPPORTED_ENHANCED_VALIDATION`
-  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE`
-  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE`
-  - Addition of `400 - BLOCKCHAIN_PUBLIC_ADDRESS.BOTH_NONCE_SIGNATURE_REQUIRED`
-
+- **This version contains changes compared to v0.1.0.**
 
 - API definition **with inline documentation**:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/code/API_definitions/blockchain-public-address.yaml&nocors)

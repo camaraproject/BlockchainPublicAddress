@@ -2,14 +2,14 @@ openapi: 3.0.3
 info:
   title: Blockchain Public Address
   description: |-
-    Allows to manage Blockchain Public Address associated with a mobile phone number.
+    This API allows the API consumer to manage Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
     - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
     to receive or request payments in cryptocurrency.
 
     # API Functionality
-    This API allows to manage a Blockchain Public Address associated with a mobile phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
+    This API allows the API consumer to manage a Blockchain Public Address associated with a mobile phone number, i.e.: to retrieve the Blockchain Public Address(es) and to bind/unbind a Blockchain Public Address.
 
     # Resources and Operations overview
     This API provides three endpoints:
@@ -25,7 +25,7 @@ info:
     The API consumer can request the user to sign a `nonce` off-chain, and then include the `nonce` and `signature` in the request body when binding the Blockchain Public Address. The API Server will then verify that the `signature` is valid for the given `nonce` and `blockchainPublicAddress`.
 
     The E2E procedure is depicted in below picture:
-    ![Binding Enforcement - Off-Chain Signature](https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/main/documentation/API_documentation/resources/blockchain-public-address-binding-enforcement-off-chain-signature.png)
+    ![Binding Enforcement - Off-Chain Signature](https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/documentation/API_documentation/resources/blockchain-public-address-binding-enforcement-off-chain-signature.png)
 
     LEGEND:
     - `API Server`, `Challenge Module` and `Binding Database` are functional components that represent the underlying Backend API Logic in the Telco Operator. How this CAMARA API is implemented by a Telco Operator is out of scope of this specification.

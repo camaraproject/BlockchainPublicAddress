@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Blockchain Public Address Validation
   description: |-
-    Allows to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
+    This API allows the API consumer to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
     - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
