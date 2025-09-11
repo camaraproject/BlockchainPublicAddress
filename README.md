@@ -27,19 +27,19 @@ Sandbox API Repository to describe, develop, document, and test the BlockchainPu
 ## Release Information
 * Note: Please be aware that the project will have updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* **The pre-release [r2.1 - rc](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.1) for the Blockchain Public Address APIs is available.**
-<br>This is a release candidate. Until the public release there are bug fixes to be expected. The release candidate is suitable for implementors, but it is not recommended to use the APIs with customers in productive environments.
+* **NEW public release [r2.2](https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.2) for the Blockchain Public Address APIs is available.**
+<br>This is a public release.
 
-* This pre-release includes the following APIs:
-- API name: Blockchain Public Address - API Definition v0.3.0-rc.1 with inline documentation:
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address.yaml)
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.1/code/API_definitions/blockchain-public-address.yaml)
+* This release includes the following APIs:
+- API name: Blockchain Public Address - API Definition v0.3.0 with inline documentation:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/code/API_definitions/blockchain-public-address.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/code/API_definitions/blockchain-public-address.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.2/code/API_definitions/blockchain-public-address.yaml)
 
-- API name: Blockchain Public Address Validation - API Definition v0.1.0-rc.1 with inline documentation:
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address-validation.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.1/code/API_definitions/blockchain-public-address-validation.yaml)
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.1/code/API_definitions/blockchain-public-address-validation.yaml)
+- API name: Blockchain Public Address Validation - API Definition v0.1.0 with inline documentation:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/code/API_definitions/blockchain-public-address-validation.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/BlockchainPublicAddress/r2.2/code/API_definitions/blockchain-public-address-validation.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/BlockchainPublicAddress/blob/r2.2/code/API_definitions/blockchain-public-address-validation.yaml)
 
 * Other releases of this sub project are available in [BlockchainPublicAddress Releases](https://github.com/camaraproject/BlockchainPublicAddress/releases)
 * For changes see [CHANGELOG.md](/CHANGELOG.md)

@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Blockchain Public Address Validation
   description: |-
-    Allows to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
+    This API allows the API consumer to generate a one-time nonce for Enhanced Binding validation for Blockchain Public Address associated with a mobile phone number.
 
     # Relevant Definitions and concepts
     - **Blockchain Public Address**: Unique string of code used by individuals that can be used to send, receive, and store digital assets (e.g. payments in cryptocurrencies, smart contracts, NFT (Non-Fungible Tokens), etc.) on a blockchain network
@@ -37,13 +37,13 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.1.0-rc.1
+  version: 0.1.0
   x-camara-commonalities: 0.6
 externalDocs:
   description: Product documentation at Camara
   url: https://github.com/camaraproject/BlockchainPublicAddress
 servers:
-  - url: "{apiRoot}/blockchain-public-address-validation/v0.1rc1"
+  - url: "{apiRoot}/blockchain-public-address-validation/v0.1"
     variables:
       apiRoot:
         default: http://localhost:9091
