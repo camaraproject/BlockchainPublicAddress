@@ -1,4 +1,4 @@
-Feature: CAMARA Blockchain Public Address API, v0.3.0 - Operation bindBlockchainPublicAddress
+Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPublicAddress
   # Input to be provided by the implementation to the tester
   #
   # Implementation indications:
@@ -11,7 +11,7 @@ Feature: CAMARA Blockchain Public Address API, v0.3.0 - Operation bindBlockchain
   # References to OAS spec schemas refer to schemas specifies in blockchain-public-address.yaml
 
   Background: Common bindBlockchainPublicAddress setup
-    Given the resource "/blockchain-public-address/v0.3/blockchain-public-addresses"
+    Given the resource "/blockchain-public-address/vwip/blockchain-public-addresses"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
