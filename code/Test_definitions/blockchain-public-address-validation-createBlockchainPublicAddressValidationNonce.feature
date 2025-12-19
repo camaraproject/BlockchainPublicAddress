@@ -1,4 +1,4 @@
-Feature: CAMARA Blockchain Public Address Validation API, v0.1.0 - Operation createBlockchainPublicAddressValidationNonce
+Feature: CAMARA Blockchain Public Address Validation API, vwip - Operation createBlockchainPublicAddressValidationNonce
   # Input to be provided by the implementation to the tester
   #
   # Implementation indications:
@@ -11,7 +11,7 @@ Feature: CAMARA Blockchain Public Address Validation API, v0.1.0 - Operation cre
   # References to OAS spec schemas refer to schemas specifies in blockchain-public-address-validation.yaml
 
   Background: Common createBlockchainPublicAddressValidationNonce setup
-    Given the resource "/blockchain-public-address-validation/v0.1/blockchain-public-addresses"
+    Given the resource "/blockchain-public-address-validation/vwip/blockchain-public-addresses"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
