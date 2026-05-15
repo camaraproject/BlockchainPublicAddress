@@ -268,7 +268,7 @@ components:
           type: string
           pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$'
           description: |-
-            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard. 
+            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard.
             The identifier is composed of a `namespace` and a `reference`, separated by a colon.
 
             **Format:** `<namespace>:<reference>`
@@ -354,7 +354,7 @@ components:
           type: string
           pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$'
           description: |-
-            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard. 
+            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard.
             The identifier is composed of a `namespace` and a `reference`, separated by a colon.
 
             **Format:** `<namespace>:<reference>`
