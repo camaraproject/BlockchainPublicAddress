@@ -285,7 +285,7 @@ components:
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         assets:
           type: array
-          description: >
+          description: |-
             List of supported assets for the blockchain, strictly formatted according to the **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** standard. For native assets utilizing the `slip44` namespace, refer to the **[SLIP-44 Registry](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)** for standard coin types.
 
             This is an optional field, generally only indicated when there are business needs to restrict or specify supported assets.
@@ -295,8 +295,10 @@ components:
             - Polygon USDC (ERC-20): `eip155:137/erc20:0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174`
             - Moonbeam (GLMR): `eip155:1284/slip44:1284`
             - Moonbeam (Native Token ERC-20 Precompile:GLMR): `eip155:1284/erc20:0x0000000000000000000000000000000000000802`
-            - Avalanche C-Chain: `eip155:43114/slip44:9000`
-            - Avalanche X-Chain: `avax:x/slip44:9000`
+            - Avalanche X-Chain (AVAX): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/asset:FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z`
+            - Avalanche X-Chain (NFT): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/asset:<nft_asset_id>`
+            - Avalanche P-Chain (AVAX): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/slip44:9000`
+            - Avalanche C-Chain (AVAX): `eip155:43114/slip44:9000`
           minItems: 0
           items:
             type: string
