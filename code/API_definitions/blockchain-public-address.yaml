@@ -113,12 +113,12 @@ paths:
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
                       blockchainNetworkId: "evm:1"
                       currency:
-                        - ETH
+                        - "eip155:1/slip44:60"
                     - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
                       blockchainNetworkId: "evm:137"
                       currency:
-                        - WETH
+                        - "eip155:137/erc20:0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619"
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -285,10 +285,11 @@ components:
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
-          description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
+          description: List of supported assets for the blockchain formatted as **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** Asset IDs (e.g., 'eip155:1/slip44:60' for Native ETH). Optional field (generally not needed), only indicated when there are business needs to set one or a list of specific assets supported.
           minItems: 0
           items:
             type: string
+            pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}\/[-a-z0-9]{3,8}:[-a-zA-Z0-9]{1,64}$'
         nonce:
           type: string
           description: |-
@@ -306,7 +307,7 @@ components:
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
         blockchainNetworkId: "evm:1"
         currency:
-          - ETH
+          - "eip155:1/slip44:60"
     BindBlockchainPublicAddressResponse:
       type: object
       description: Bind Blockchain Public Address response
@@ -349,10 +350,11 @@ components:
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
         currency:
           type: array
-          description: List of currencies for the blockchain. Optional field (generally not needed), only indicated when there are business needs to set one or a list on currencies supported.
+          description: List of supported assets for the blockchain formatted as CAIP-19 Asset IDs (e.g., 'eip155:1/slip44:60' for Native ETH). Optional field (generally not needed), only indicated when there are business needs to set one or a list of specific assets supported.
           minItems: 0
           items:
             type: string
+            pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}\/[-a-z0-9]{3,8}:[-a-zA-Z0-9]{1,64}$'
     ErrorInfo:
       type: object
       required:
