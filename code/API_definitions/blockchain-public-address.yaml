@@ -287,7 +287,7 @@ components:
             - **Moonbeam (EIP-155 alias): `eip155:1284`
             - **Rootstock (Bitcoin Sidechain)**: `eip155:30`
             - **ApeChain**: `eip155:33139`
-            
+
             To ensure interoperability, networks that are EVM-compatible should use the `eip155` namespace with their respective `chainId` as the reference.
         assets:
           type: array
@@ -373,7 +373,7 @@ components:
             - **Moonbeam (EIP-155 alias): `eip155:1284`
             - **Rootstock (Bitcoin Sidechain)**: `eip155:30`
             - **ApeChain**: `eip155:33139`
-            
+
             To ensure interoperability, networks that are EVM-compatible should use the `eip155` namespace with their respective `chainId` as the reference.
         assets:
           type: array
