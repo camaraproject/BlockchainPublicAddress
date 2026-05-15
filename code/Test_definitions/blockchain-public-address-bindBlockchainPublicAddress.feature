@@ -35,13 +35,13 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
     # The response has to comply with the generic response schema which is part of the spec
     And the response body complies with the OAS schema at "/components/schemas/BindBlockchainPublicAddressResponse"
 
-  @bind_blockchain_public_address_02_generic_success_scenario_with_curreny_information
-  Scenario: Common validations for any success scenario with currency information provided
-    # Property "$.currency[*]" is set with a valid value supported in the blockChainNetworkId
+  @bind_blockchain_public_address_02_generic_success_scenario_with_assets_information
+  Scenario: Common validations for any success scenario with assets information provided
+    # Property "$.assets[*]" is set with a valid value supported in the blockChainNetworkId
     Given the request body property "$.phoneNumber" is set with a valid phone number
     And the request body property "$.blockchainPublicAddress" is set with a valid value
     And the request body property "$.blockchainNetworkId" is set with a valid value existing in the environment
-    And the request body property "$.currency[*]" is set with a valid value supported in the blockChainNetworkId
+    And the request body property "$.assets[*]" is set with a valid value supported in the blockChainNetworkId
     And the request body is set to a valid request body
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 201
@@ -102,7 +102,7 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
 
     Examples:
       | input_property          | oas_spec_schema                                         |
-      | $.currency              | /components/schemas/BindBlockchainPublicAddressRequest  |
+      | $.assets                | /components/schemas/BindBlockchainPublicAddressRequest  |
 
   @bind_blockchain_public_address_400.04_required_input_properties_missing
   Scenario Outline: Required input properties are missing
@@ -128,23 +128,23 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
     And the response property "$.code" is "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER"
     And the response property "$.message" contains a user friendly text
 
-  @bind_blockchain_public_address_400.06_invalid_currency
-  Scenario: Using a invalid currency value
-    Given the request body property includes property "$.currency" with a not valid value supported by blockChainNetworkId
+  @bind_blockchain_public_address_400.06_invalid_assets
+  Scenario: Using an invalid assets value
+    Given the request body property includes property "$.assets" with a not valid value supported by blockChainNetworkId
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 400
     And the response property "$.status" is 400
-    And the response property "$.code" is "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY"
+    And the response property "$.code" is "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_ASSETS"
     And the response property "$.message" contains a user friendly text
 
-  @bind_blockchain_public_address_400.07_missing_currency
+  @bind_blockchain_public_address_400.07_missing_assets
   # Optional scenario that may not be required by a Telco Operator
-  Scenario: Missing currency
-    Given the request body property does not include property "$.currency"
+  Scenario: Missing assets
+    Given the request body property does not include property "$.assets"
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 400
     And the response property "$.status" is 400
-    And the response property "$.code" is "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED"
+    And the response property "$.code" is "BLOCKCHAIN_PUBLIC_ADDRESS.ASSETS_REQUIRED"
     And the response property "$.message" contains a user friendly text
 
   @bind_blockchain_public_address_400.08_invalid_x-correlator
