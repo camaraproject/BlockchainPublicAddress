@@ -112,12 +112,12 @@ paths:
                     - id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
                       blockchainNetworkId: "evm:1"
-                      currency:
+                      asset:
                         - "eip155:1/slip44:60"
                     - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
                       blockchainNetworkId: "evm:137"
-                      currency:
+                      asset:
                         - "eip155:137/erc20:0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619"
         "400":
           $ref: "#/components/responses/Generic400"
@@ -283,9 +283,20 @@ components:
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-        currency:
+        asset:
           type: array
-          description: List of supported assets for the blockchain formatted as **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** Asset IDs (e.g., 'eip155:1/slip44:60' for Native ETH). Optional field (generally not needed), only indicated when there are business needs to set one or a list of specific assets supported.
+          description: >
+            List of supported assets for the blockchain, strictly formatted according to the **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** standard. For native assets utilizing the `slip44` namespace, refer to the **[SLIP-44 Registry](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)** for standard coin types.
+
+            This is an optional field, generally only indicated when there are business needs to restrict or specify supported assets.
+
+            **Examples:**
+            - Native Ethereum (ETH): `eip155:1/slip44:60`
+            - Polygon USDC (ERC-20): `eip155:137/erc20:0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174`
+            - Moonbeam (GLMR): `eip155:1284/slip44:1284`
+            - Moonbeam (Native Token ERC-20 Precompile:GLMR): `eip155:1284/erc20:0x0000000000000000000000000000000000000802`
+            - Avalanche C-Chain: `eip155:43114/slip44:9000`
+            - Avalanche X-Chain: `avax:x/slip44:9000`
           minItems: 0
           items:
             type: string
@@ -306,7 +317,7 @@ components:
         phoneNumber: "+346789990012"
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
         blockchainNetworkId: "evm:1"
-        currency:
+        asset:
           - "eip155:1/slip44:60"
     BindBlockchainPublicAddressResponse:
       type: object
@@ -348,9 +359,20 @@ components:
             - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
             - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-        currency:
+        asset:
           type: array
-          description: List of supported assets for the blockchain formatted as CAIP-19 Asset IDs (e.g., 'eip155:1/slip44:60' for Native ETH). Optional field (generally not needed), only indicated when there are business needs to set one or a list of specific assets supported.
+          description: >
+            List of supported assets for the blockchain, strictly formatted according to the **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** standard. For native assets utilizing the `slip44` namespace, refer to the **[SLIP-44 Registry](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)** for standard coin types.
+
+            This is an optional field, generally only indicated when there are business needs to restrict or specify supported assets.
+
+            **Examples:**
+            - Native Ethereum (ETH): `eip155:1/slip44:60`
+            - Polygon USDC (ERC-20): `eip155:137/erc20:0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174`
+            - Moonbeam (GLMR): `eip155:1284/slip44:1284`
+            - Moonbeam (Native Token ERC-20 Precompile:GLMR): `eip155:1284/erc20:0x0000000000000000000000000000000000000802`
+            - Avalanche C-Chain: `eip155:43114/slip44:9000`
+            - Avalanche X-Chain: `avax:x/slip44:9000`
           minItems: 0
           items:
             type: string
@@ -377,8 +399,8 @@ components:
         Problem with the client request.
         In addition to regular scenario of INVALID_ARGUMENT, other exceptions may exist.
          - Indicated blockchainNetworkId is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER","message": "Indicated blockchainNetworkId is not valid")
-         - Indicated currency is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY","message": "Indicated currency is not found")
-         - Currency indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED","message": "One currency is required")
+         - Indicated asset is not valid for the Blockchain ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_ASSET","message": "Indicated asset is not found")
+         - Asset indication is required ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.ASSET_REQUIRED","message": "One asset is required")
          - Indicated nonce is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE","message": "Indicated nonce is not valid")
          - Indicated signature is not valid ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE","message": "Indicated signature is not valid")
          - Both nonce and signature are required together to perform enhanced validation ("code": "BLOCKCHAIN_PUBLIC_ADDRESS.BOTH_NONCE_SIGNATURE_REQUIRED","message": "Both nonce and signature are required for enhanced validation")
@@ -399,8 +421,8 @@ components:
                     enum:
                       - INVALID_ARGUMENT
                       - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
-                      - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
-                      - BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_ASSET
+                      - BLOCKCHAIN_PUBLIC_ADDRESS.ASSET_REQUIRED
                       - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_NONCE
                       - BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_SIGNATURE
                       - BLOCKCHAIN_PUBLIC_ADDRESS.BOTH_NONCE_SIGNATURE_REQUIRED
@@ -417,18 +439,18 @@ components:
                 status: 400
                 code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_BLOCKCHAIN_NETWORK_IDENTIFIER
                 message: Indicated blockchainNetworkId is not valid
-            GENERIC_400_INVALID_CURRENCY_FOR_BLOCKCHAIN:
-              description: Invalid currency
+            GENERIC_400_INVALID_ASSET_FOR_BLOCKCHAIN:
+              description: Invalid asset
               value:
                 status: 400
-                code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_CURRENCY
-                message: Indicated currency is not found
-            GENERIC_400_REQUIRED_CURRENCY_FOR_BLOCKCHAIN:
-              description: Currency is required
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.INVALID_ASSET
+                message: Indicated asset is not found
+            GENERIC_400_REQUIRED_ASSET_FOR_BLOCKCHAIN:
+              description: Asset is required
               value:
                 status: 400
-                code: BLOCKCHAIN_PUBLIC_ADDRESS.CURRENCY_REQUIRED
-                message: One currency is required
+                code: BLOCKCHAIN_PUBLIC_ADDRESS.ASSET_REQUIRED
+                message: One asset is required
             GENERIC_400_INVALID_NONCE:
               description: Invalid nonce
               value:
