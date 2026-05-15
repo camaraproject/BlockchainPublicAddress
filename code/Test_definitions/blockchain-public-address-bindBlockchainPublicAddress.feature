@@ -37,11 +37,11 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
 
   @bind_blockchain_public_address_02_generic_success_scenario_with_assets_information
   Scenario: Common validations for any success scenario with assets information provided
-    # Property "$.assets[*]" is set with a valid value supported in the blockChainNetworkId
+    # Property "$.assets[*]" is set with a valid value supported in the blockchainNetworkId
     Given the request body property "$.phoneNumber" is set with a valid phone number
     And the request body property "$.blockchainPublicAddress" is set with a valid value
     And the request body property "$.blockchainNetworkId" is set with a valid value existing in the environment
-    And the request body property "$.assets[*]" is set with a valid value supported in the blockChainNetworkId
+    And the request body property "$.assets[*]" is set with a valid value supported in the blockchainNetworkId
     And the request body is set to a valid request body
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 201
@@ -50,7 +50,7 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
     # The response has to comply with the generic response schema which is part of the spec
     And the response body complies with the OAS schema at "/components/schemas/BindBlockchainPublicAddressResponse"
 
-  @bind_blockchain_public_address_02_generic_success_scenario_with_binding_enforcement
+  @bind_blockchain_public_address_03_generic_success_scenario_with_binding_enforcement
   Scenario: Common validations for any success scenario with binding enforcement procedure
     # Properties "$.nonce" and "$.signature" are set with valid values
     Given the request body property "$.phoneNumber" is set with a valid phone number
@@ -130,7 +130,7 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
 
   @bind_blockchain_public_address_400.06_invalid_assets
   Scenario: Using an invalid assets value
-    Given the request body property includes property "$.assets" with a not valid value supported by blockChainNetworkId
+    Given the request body property includes property "$.assets" with a not valid value supported by blockchainNetworkId
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 400
     And the response property "$.status" is 400
@@ -140,7 +140,7 @@ Feature: CAMARA Blockchain Public Address API, vwip - Operation bindBlockchainPu
   @bind_blockchain_public_address_400.07_missing_assets
   # Optional scenario that may not be required by a Telco Operator
   Scenario: Missing assets
-    Given the request body property does not include property "$.assets"
+    Given the request body does not include the property "$.assets"
     When the request "bindBlockchainPublicAddress" is sent
     Then the response status code is 400
     And the response property "$.status" is 400

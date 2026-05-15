@@ -111,12 +111,12 @@ paths:
                   value:
                     - id: "90c626ce-5284-4a84-b85e-46e0ee3d0434"
                       blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-                      blockchainNetworkId: "evm:1"
+                      blockchainNetworkId: "eip155:1"
                       assets:
                         - "eip155:1/slip44:60"
                     - id: "5c179f50-db37-4d23-87e3-6f10c991899f"
                       blockchainPublicAddress: "0x329CdCAAC31c934fe32322b111bE8fBd30b4FFA9"
-                      blockchainNetworkId: "evm:137"
+                      blockchainNetworkId: "eip155:137"
                       assets:
                         - "eip155:137/erc20:0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619"
         "400":
@@ -266,23 +266,29 @@ components:
           description: User's Blockchain Public Address to bind to the mobile `phoneNumber`
         blockchainNetworkId:
           type: string
-          pattern: ^[a-zA-Z0-9]+:?[a-zA-Z0-9]+$
+          pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$'
           description: |-
-            Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
-            Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
+            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard. 
+            The identifier is composed of a `namespace` and a `reference`, separated by a colon.
 
-            - `<L1_Ecosystem>`: Represents a Layer 1 Blockchain Ecosystem (e.g. ethereum, bitcoin,...)
-            - `<sub_id>`: Represents subsequents L2 and Testnet Blockchain Ecosystems, whenever they apply (e.g. bitcoin is a monolithic blockchain so as this concept does not apply)
+            **Format:** `<namespace>:<reference>`
 
-            So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
-            - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
-              - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
-              - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
-              - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
-              - `aleph zero` blockchain would be identified by `evm:41455` value (i.e. aleph zero evm).
-            - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            - **namespace**: A lowercase alphanumeric identifier (3-8 chars) representing the ecosystem or VM (e.g., `eip155` for EVM, `bip122` for Bitcoin, `polkadot`, `solana`).
+            - **reference**: A unique string (1-32 chars) identifying the specific chain within that namespace.
+
+            **Standard Mapping Examples:**
+            - **Ethereum Mainnet**: `eip155:1`
+            - **Bitcoin Mainnet**: `bip122:000000000019d6689c085ae165831e93`
+            - **Polygon Mainnet**: `eip155:137`
+            - **Avalanche C-Chain**: `avax:imji8papUf2EhV3le337w1vgFauqkJg-`
+            - **Avalanche C-Chain (EIP-155 alias) **: `eip155:43114`
+            - **Avalanche X-Chain**: `avax:8aDU0Kqh-5d23op-B-r-4YbQFRbsgF9a` (Using custom namespace and genesis-based hash)
+            - **Moonbeam : `polkadot:fe58ea77779b7abda7da4ec526d14db`
+            - **Moonbeam (EIP-155 alias): `eip155:1284`
+            - **Rootstock (Bitcoin Sidechain)**: `eip155:30`
+            - **ApeChain**: `eip155:33139`
+            
+            To ensure interoperability, networks that are EVM-compatible should use the `eip155` namespace with their respective `chainId` as the reference.
         assets:
           type: array
           description: |-
@@ -318,7 +324,7 @@ components:
       example:
         phoneNumber: "+346789990012"
         blockchainPublicAddress: "0x71C7656EC7ab88b098dafB451B2314C5f6d8932A"
-        blockchainNetworkId: "evm:1"
+        blockchainNetworkId: "eip155:1"
         assets:
           - "eip155:1/slip44:60"
     BindBlockchainPublicAddressResponse:
@@ -346,24 +352,32 @@ components:
           description: User's Blockchain Public Address
         blockchainNetworkId:
           type: string
+          pattern: '^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$'
           description: |-
-            Identifier (i.e. name/type) of the blockchain whose address value is provided within `blockchainPublicAddress`. The model proposed aims to provide an extensible way to list/identify every blockchain ecosystems.
-            Proposed format is: `<L1_Ecosystem>:<sub_id>`, where:
-            - `<L1_Ecosystem>`: Represents a Layer 1 Blockchain Ecosystem (e.g. ethereum, bitcoin,...)
-            - `<sub_id>`: Represents subsequents L2 and Testnet Blockchain Ecosystems, whenever they apply (e.g. bitcoin is a monolithic blockchain so as this concept does not apply)
+            Blockchain identifier strictly following the **[CAIP-2](https://chainagnostic.org/CAIPs/caip-2)** standard. 
+            The identifier is composed of a `namespace` and a `reference`, separated by a colon.
 
-            So far, in the scope of v0.2 of this specification, the following `<L1_Ecosystem>` values are covered:
-            - `evm`: Representing a common L1 Layer concept for EVM-based networks. Within this Ecosystem, `<sub_id>` concept is required and matches the value of chainId as per [EVM ChainId](https://chainid.network/). For instance:
-              - `ethereum` blockchain would be identified by `evm:1` value (i.e. ethereum mainnet).
-              - `polygon` blockchain would be identified by `evm:137` value (i.e. polygon mainnet).
-              - `celo` blockchain would be identified by `evm:42220` value (i.e. celo mainnet).
-              - `aleph zero` blockchain would be identified by `evm:41455` value (i.e. aleph zero evm).
-            - `bitcoin`: Representing Bitcoin L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `solana`: Representing Solana L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
-            - `cardano`: Representing Cardano L1 blockchain. No `<sub_id>` concept applies for this L1 Ecosystem
+            **Format:** `<namespace>:<reference>`
+
+            - **namespace**: A lowercase alphanumeric identifier (3-8 chars) representing the ecosystem or VM (e.g., `eip155` for EVM, `bip122` for Bitcoin, `polkadot`, `solana`).
+            - **reference**: A unique string (1-32 chars) identifying the specific chain within that namespace.
+
+            **Standard Mapping Examples:**
+            - **Ethereum Mainnet**: `eip155:1`
+            - **Bitcoin Mainnet**: `bip122:000000000019d6689c085ae165831e93`
+            - **Polygon Mainnet**: `eip155:137`
+            - **Avalanche C-Chain**: `avax:imji8papUf2EhV3le337w1vgFauqkJg-`
+            - **Avalanche C-Chain (EIP-155 alias) **: `eip155:43114`
+            - **Avalanche X-Chain**: `avax:8aDU0Kqh-5d23op-B-r-4YbQFRbsgF9a` (Using custom namespace and genesis-based hash)
+            - **Moonbeam : `polkadot:fe58ea77779b7abda7da4ec526d14db`
+            - **Moonbeam (EIP-155 alias): `eip155:1284`
+            - **Rootstock (Bitcoin Sidechain)**: `eip155:30`
+            - **ApeChain**: `eip155:33139`
+            
+            To ensure interoperability, networks that are EVM-compatible should use the `eip155` namespace with their respective `chainId` as the reference.
         assets:
           type: array
-          description: >
+          description: |-
             List of supported assets for the blockchain, strictly formatted according to the **[CAIP-19 Asset ID](https://chainagnostic.org/CAIPs/caip-19)** standard. For native assets utilizing the `slip44` namespace, refer to the **[SLIP-44 Registry](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)** for standard coin types.
 
             This is an optional field, generally only indicated when there are business needs to restrict or specify supported assets.
@@ -373,8 +387,10 @@ components:
             - Polygon USDC (ERC-20): `eip155:137/erc20:0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174`
             - Moonbeam (GLMR): `eip155:1284/slip44:1284`
             - Moonbeam (Native Token ERC-20 Precompile:GLMR): `eip155:1284/erc20:0x0000000000000000000000000000000000000802`
-            - Avalanche C-Chain: `eip155:43114/slip44:9000`
-            - Avalanche X-Chain: `avax:x/slip44:9000`
+            - Avalanche X-Chain (AVAX): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/asset:FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z`
+            - Avalanche X-Chain (NFT): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/asset:<nft_asset_id>`
+            - Avalanche P-Chain (AVAX): `avax:imji8papUf2EhV3le337w1vgFauqkJg-/slip44:9000`
+            - Avalanche C-Chain (AVAX): `eip155:43114/slip44:9000`
           minItems: 0
           items:
             type: string
